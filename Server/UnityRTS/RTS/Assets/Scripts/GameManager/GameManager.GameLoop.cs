@@ -16,8 +16,6 @@ namespace GameManager
 		/// </summary>
 		internal void Update()
         {
-			Log("********************************** GameManager Update **********************************", this.gameObject);
-
 			if (gameState == GameState.PLAYING)
 			{
 				UpdateTimerUI();
@@ -44,7 +42,21 @@ namespace GameManager
 
 	                if (sum == TotalNbrOfRounds)
 					{
-						TimeToDisplayBanner = 1.5f;
+						foreach (GameObject agent in Agents.Values)
+						{
+							agent.GetComponent<AgentController>().Agent.CloseCommandLog();
+						}
+
+						if (dllNames == null)
+						{
+							DisplaySingleAgentResults();
+						}
+						else
+						{
+							DisplayMultiAgentResults();
+						}
+
+						TimeToDisplayBanner = 5.0f;
 						gameState = GameState.FINISHED;
 					}
 					else
@@ -60,22 +72,15 @@ namespace GameManager
             }
 			else if (gameState == GameState.FINISHED)
 			{
-				foreach (GameObject agent in Agents.Values)
+				TimeToDisplayBanner -= Time.deltaTime;
+				if (TimeToDisplayBanner < 0.0f)
 				{
-					agent.GetComponent<AgentController>().Agent.CloseCommandLog();
+#if UNITY_EDITOR
+					UnityEditor.EditorApplication.isPlaying = false;
+#else
+					Application.Quit();
+#endif
 				}
-
-				if (dllNames == null)
-				{
-					DisplaySingleAgentResults();
-				}
-				else
-				{
-					DisplayMultiAgentResults();
-				}
-
-				Debug.Break();
-				return;
 			}
 		}
 
