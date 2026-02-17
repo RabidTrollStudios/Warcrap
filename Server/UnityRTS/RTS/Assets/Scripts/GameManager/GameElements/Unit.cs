@@ -116,6 +116,9 @@ namespace GameManager.GameElements
 		private List<Vector3Int> path;
 		private Vector3 velocity;
 		private int pathUpdateCounter = 0;
+		private int pathFailCount = 0;
+		private int pathBackoffMultiplier = 1;
+		private int localAvoidWaitFrames = 0;
 
 		#endregion
 
@@ -310,6 +313,8 @@ namespace GameManager.GameElements
 			this.velocity = Vector3.zero;
 			this.CurrentAction = UnitAction.IDLE;
 			path = new List<Vector3Int>();
+			pathFailCount = 0;
+			pathBackoffMultiplier = 1;
 			UnitType = unitType;
 			if (Constants.BUILDS[UnitType.WORKER].Contains(UnitType))
 			{

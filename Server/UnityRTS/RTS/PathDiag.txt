@@ -1,0 +1,27 @@
+GetPathToUnit FAILED
+  from=(16, 13, 0) to=ARCHER at (51, 28, 0)
+  mapSize=(73, 42, 1)
+  totalNeighbors=8 buildableNeighbors=0
+
+All neighbors:
+  (50, 29, 0) buildable=False
+  (50, 27, 0) buildable=False
+  (51, 29, 0) buildable=False
+  (51, 27, 0) buildable=False
+  (52, 29, 0) buildable=False
+  (52, 27, 0) buildable=False
+  (50, 28, 0) buildable=False
+  (52, 28, 0) buildable=False
+
+A* attempts (buildable neighbors only):
+
+Start cell (16, 13, 0) buildable=False
+Start cell neighbors:
+  (15, 12, 0) buildable=True
+  (15, 13, 0) buildable=False
+  (15, 14, 0) buildable=True
+  (16, 12, 0) buildable=True
+  (16, 14, 0) buildable=True
+  (17, 12, 0) buildable=False
+  (17, 13, 0) buildable=False
+  (17, 14, 0) buildable=False

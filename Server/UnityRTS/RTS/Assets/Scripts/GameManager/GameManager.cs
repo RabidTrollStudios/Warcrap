@@ -260,7 +260,7 @@ namespace GameManager
 		#line hidden
 		internal void Log(string message, GameObject context)
 		{
-			Debug.Log("<color=" + GameManagerLogColor + ">" + message + "</color>", context);
+			Debug.Log($"<color={GameManagerLogColor}>{message}</color>", context);
 		}
 		#line default
 

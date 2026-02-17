@@ -81,6 +81,7 @@ namespace GameManager
 			foreach (GameObject agent in Agents.Values)
 			{
 				agent.GetComponent<AgentController>().InitializeMatch();
+				agent.GetComponent<AgentController>().Agent.OpenCommandLog();
 			}
 
 			NbrOfRounds = 0;
@@ -107,6 +108,7 @@ namespace GameManager
 		private void RecreateAgent(string agentName, string agentDLLName, int agentNbr,
 			GameObject playerPrefab, Dictionary<UnitType, GameObject> playerPrefabs, Canvas debuggerCanvas)
 		{
+			Agents[agentNbr].GetComponent<AgentController>().Agent.CloseCommandLog();
 			Destroy(Agents[agentNbr].GetComponent<AgentController>().Agent.gameObject);
 			Destroy(Agents[agentNbr].GetComponent<AgentController>().gameObject);
 
@@ -116,6 +118,7 @@ namespace GameManager
 				agentName, agentDLLName, agentNbr, debuggerCanvas, agentLoader.PathToDLLs);
 			Agents[agentNbr] = agentObject;
 			unitManager.UnitPrefabs[agentNbr] = playerPrefabs;
+			agentObject.GetComponent<AgentController>().Agent.OpenCommandLog();
 		}
 
 		#endregion
@@ -142,6 +145,7 @@ namespace GameManager
             {
 	            agent.GetComponent<AgentController>().Agent.gameObject.SetActive(true);
 				agent.GetComponent<AgentController>().Agent.OpenLogFile();
+				agent.GetComponent<AgentController>().Agent.CmdLog?.StartRound(NbrOfRounds);
 				agent.GetComponent<AgentController>().InitializeRound();
 			}
 
@@ -201,6 +205,10 @@ namespace GameManager
         /// </summary>
         private void Learn()
         {
+			string winnerName = roundWinner != null
+				? roundWinner.GetComponent<AgentController>().Agent.AgentName + " " + roundWinner.GetComponent<AgentController>().Agent.AgentDLLName
+				: "unknown";
+
 			if (EnableLearning)
 			{
 				foreach (GameObject agent in Agents.Values)
@@ -208,6 +216,11 @@ namespace GameManager
 		            agent.GetComponent<AgentController>().Learn();
 					agent.GetComponent<AgentController>().Agent.EndLogLine();
 				}
+			}
+
+			foreach (GameObject agent in Agents.Values)
+			{
+				agent.GetComponent<AgentController>().Agent.CmdLog?.EndRound(winnerName + " wins");
 			}
 		}
 

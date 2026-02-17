@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using AgentSDK;
 using GameManager.GameElements;
@@ -99,7 +100,9 @@ namespace GameManager
 				return;
 			}
 
-			if (!Utility.IsValidGridLocation(args.TargetPosition) || !mapManager.IsAreaBuildable(args.UnitType, args.TargetPosition))
+			// Exclude the building worker's cell - the worker will move to a neighbor before building
+			var workerExclusion = new HashSet<Vector3Int> { unit.GetComponent<Unit>().GridPosition };
+			if (!Utility.IsValidGridLocation(args.TargetPosition) || !mapManager.IsAreaBuildable(args.UnitType, args.TargetPosition, workerExclusion))
 			{
 				GameManager.Instance.Log(agent.AgentName + " ERROR: invalid target grid position " + args.TargetPosition, logContext);
 				return;

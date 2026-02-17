@@ -81,6 +81,18 @@ namespace GameManager
 			LogFileStream = File.Open(logFileName,FileMode.Append);
 		}
 
+		internal void OpenCommandLog()
+		{
+			string cmdLogPath = DllPath + Path.AltDirectorySeparatorChar + "CommandLog_" + AgentDLLName + ".txt";
+			CmdLog = new CommandLogger(AgentName + " " + AgentDLLName, cmdLogPath, this.gameObject);
+		}
+
+		internal void CloseCommandLog()
+		{
+			CmdLog?.Close();
+			CmdLog = null;
+		}
+
 		#endregion
 
 		#region Constructors and Initialization
@@ -169,6 +181,11 @@ namespace GameManager
         public int Gold { get; internal set; }
 
 		/// <summary>
+		/// Command logger for recording all commands and their outcomes
+		/// </summary>
+		internal CommandLogger CmdLog { get; set; }
+
+		/// <summary>
 		/// Screen color of the agent
 		/// </summary>
 		internal Color Color { get; set; }
@@ -181,6 +198,14 @@ namespace GameManager
 		/// Updates the agent each frame
 		/// </summary>
 		public virtual void Update() { }
+
+		/// <summary>
+		/// Clean up file handles when the editor stops or the object is destroyed
+		/// </summary>
+		protected virtual void OnDestroy()
+		{
+			CloseCommandLog();
+		}
 
 		#endregion
 	}

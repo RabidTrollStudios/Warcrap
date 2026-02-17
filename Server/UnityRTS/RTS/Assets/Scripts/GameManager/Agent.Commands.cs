@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AgentSDK;
 using GameManager.GameElements;
 using System.Linq;
@@ -15,35 +16,28 @@ namespace GameManager
 		/// <param name="target">the point to move to</param>
 		public void Move(Unit unit, Vector3Int target)
 		{
-			GameManager.Instance.Log("Trying to move agent " + target, this.gameObject);
 			if (unit == null)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Move Unit(" + unit.UnitNbr + ") - is null", this.gameObject);
+				CmdLog?.LogCommand("MOVE", $"unit=null -> {target}", "FAILED: unit is null");
 				return;
 			}
 			if (!unit.CanMove)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Move Unit(" + unit.UnitNbr + ") - can't move", this.gameObject);
+				CmdLog?.LogCommand("MOVE", $"{unit.UnitType}#{unit.UnitNbr} at {unit.GridPosition} -> {target}", "FAILED: unit can't move");
 				return;
 			}
 			if (!Utility.IsValidGridLocation(target))
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Move Unit(" + unit.UnitNbr + ") - target location " + target + " is not on map", this.gameObject);
+				CmdLog?.LogCommand("MOVE", $"{unit.UnitType}#{unit.UnitNbr} at {unit.GridPosition} -> {target}", "FAILED: target not on map");
 				return;
 			}
 			if (!GameManager.Instance.Map.IsGridPositionBuildable(target))
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Move Unit(" + unit.UnitNbr + ") - target location " + target + " is not walkable", this.gameObject);
+				CmdLog?.LogCommand("MOVE", $"{unit.UnitType}#{unit.UnitNbr} at {unit.GridPosition} -> {target}", "FAILED: target not walkable");
 				return;
 			}
 
-			// Valid unit and location, Move the unit
-			GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-						+ " Move: Unit(" + unit.UnitNbr + ") to " + target, this.gameObject);
+			CmdLog?.LogCommand("MOVE", $"{unit.UnitType}#{unit.UnitNbr} at {unit.GridPosition} -> {target}", "SUCCESS (dispatched)");
 			GameManager.Instance.Events.MoveEventHandler(this, new MoveEventArgs(unit, unit.UnitType, target));
 		}
 
@@ -58,58 +52,45 @@ namespace GameManager
 		{
 			if (unit == null)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Build " + unitType + " with Unit(" + unit.UnitNbr + ") - is null", this.gameObject);
+				CmdLog?.LogCommand("BUILD", $"unit=null -> {unitType} at {target}", "FAILED: unit is null");
 				return;
 			}
 			if (!unit.CanBuild)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Build " + unitType + " with Unit(" + unit.UnitNbr + ") - can't build", this.gameObject);
+				CmdLog?.LogCommand("BUILD", $"{unit.UnitType}#{unit.UnitNbr} at {unit.GridPosition} -> {unitType} at {target}", "FAILED: unit can't build");
 				return;
 			}
 			if (!unit.CanBuildUnit(unitType))
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Build " + unitType + " with Unit(" + unit.UnitNbr + ") - can't build " + unitType, this.gameObject);
+				CmdLog?.LogCommand("BUILD", $"{unit.UnitType}#{unit.UnitNbr} at {unit.GridPosition} -> {unitType} at {target}", $"FAILED: unit can't build {unitType}");
 				return;
 			}
 			if (!Utility.IsValidGridLocation(target))
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Build " + unitType + " with Unit(" + unit.UnitNbr + ") - target location " + target + " is not on map", this.gameObject);
+				CmdLog?.LogCommand("BUILD", $"{unit.UnitType}#{unit.UnitNbr} at {unit.GridPosition} -> {unitType} at {target}", "FAILED: target not on map");
 				return;
 			}
-			if (!GameManager.Instance.Map.IsAreaBuildable(unitType, target))
+			// Exclude the building worker's cell - the worker will move to a neighbor before building
+			var workerExclusion = new HashSet<Vector3Int> { unit.GridPosition };
+			if (!GameManager.Instance.Map.IsAreaBuildable(unitType, target, workerExclusion))
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Build " + unitType + " with Unit(" + unit.UnitNbr + ") - target location " + target + " is not buildable", this.gameObject);
+				CmdLog?.LogCommand("BUILD", $"{unit.UnitType}#{unit.UnitNbr} at {unit.GridPosition} -> {unitType} at {target}", $"FAILED: area not buildable at {target}");
 				return;
 			}
 
-			string dependencies = "";
 			// Check if all the dependencies are satisfied
-			foreach (UnitType uT in Constants.DEPENDENCY[unitType])
-			{
-				// If this unit type doesn't exist in this agent's current units
-				if (GameManager.Instance.Units.GetUnitNbrsOfType(uT).Where(
-							u => GameManager.Instance.Units.GetUnit(u).IsBuilt).ToList().Count == 0)
-				{
-					dependencies += uT + " ";
-				}
-			}
+			var missingDeps = Constants.DEPENDENCY[unitType]
+				.Where(dep => GameManager.Instance.Units.GetUnitNbrsOfType(dep)
+					.All(u => !GameManager.Instance.Units.GetUnit(u).IsBuilt))
+				.ToList();
 
-			if (dependencies.Length != 0)
+			if (missingDeps.Count > 0)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-				                         + " ERROR: Can't Build " + unitType + " with Unit(" + unit.UnitNbr + ") - missing dependency " +
-				                         dependencies, this.gameObject);
+				CmdLog?.LogCommand("BUILD", $"{unit.UnitType}#{unit.UnitNbr} at {unit.GridPosition} -> {unitType} at {target}", $"FAILED: missing dependency {string.Join(", ", missingDeps)}");
 				return;
 			}
 
-			// Valid unit and location, Build the unit
-			GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-						+ " Build: " + unit.UnitType + "(" + unit.UnitNbr + ") " + unitType + target, this.gameObject);
+			CmdLog?.LogCommand("BUILD", $"{unit.UnitType}#{unit.UnitNbr} at {unit.GridPosition} -> {unitType} at {target} (gold={Gold})", "SUCCESS (dispatched)");
 			GameManager.Instance.Events.BuildEventHandler(this, new BuildEventArgs(unit, target, unitType));
 		}
 
@@ -123,44 +104,36 @@ namespace GameManager
 		{
 			if (unit == null)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Gather with Unit(" + unit.UnitNbr + ") - is null", this.gameObject);
+				CmdLog?.LogCommand("GATHER", "unit=null", "FAILED: unit is null");
 				return;
 			}
 			if (resource == null)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Gather with Unit(" + unit.UnitNbr + ") - Resource(" + resource + ") is null", this.gameObject);
+				CmdLog?.LogCommand("GATHER", $"{unit.UnitType}#{unit.UnitNbr} at {unit.GridPosition}", "FAILED: resource is null");
 				return;
 			}
 			if (resource.UnitType != UnitType.MINE)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Gather with Unit(" + unit.UnitNbr + ") - Resource(" + resource + ") is not a mine", this.gameObject);
+				CmdLog?.LogCommand("GATHER", $"{unit.UnitType}#{unit.UnitNbr} -> {resource.UnitType}#{resource.UnitNbr}", "FAILED: resource is not a mine");
 				return;
 			}
 			if (baseUnit == null)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Gather with Unit(" + unit.UnitNbr + ") - Base(" + baseUnit + ") is null", this.gameObject);
+				CmdLog?.LogCommand("GATHER", $"{unit.UnitType}#{unit.UnitNbr} -> mine#{resource.UnitNbr}", "FAILED: base is null");
 				return;
 			}
 			if (baseUnit.UnitType != UnitType.BASE)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Gather with Unit(" + unit.UnitNbr + ") - Base(" + baseUnit + ") is not a base", this.gameObject);
+				CmdLog?.LogCommand("GATHER", $"{unit.UnitType}#{unit.UnitNbr} -> mine#{resource.UnitNbr}, {baseUnit.UnitType}#{baseUnit.UnitNbr}", "FAILED: base unit is not a BASE");
 				return;
 			}
 			if (!unit.CanGather)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Gather with Unit(" + unit.UnitNbr + ") - " + unit.UnitType + " can't gather", this.gameObject);
+				CmdLog?.LogCommand("GATHER", $"{unit.UnitType}#{unit.UnitNbr} -> mine#{resource.UnitNbr}, base#{baseUnit.UnitNbr}", "FAILED: unit can't gather");
 				return;
 			}
 
-			GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName + " Gather: Unit("
-				        + unit.UnitNbr + ") at " + resource.UnitType + resource.GridPosition + " to "
-				        + baseUnit.UnitType + baseUnit.GridPosition, this.gameObject);
+			CmdLog?.LogCommand("GATHER", $"worker#{unit.UnitNbr} at {unit.GridPosition} -> mine#{resource.UnitNbr} at {resource.GridPosition}, base#{baseUnit.UnitNbr} at {baseUnit.GridPosition}", "SUCCESS (dispatched)");
 			GameManager.Instance.Events.GatherEventHandler(this, new GatherEventArgs(unit, resource, baseUnit));
 		}
 
@@ -173,30 +146,26 @@ namespace GameManager
 		{
 			if (unit == null)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Train with Unit(" + unit.UnitNbr + ") - is null", this.gameObject);
+				CmdLog?.LogCommand("TRAIN", $"unit=null -> {unitType}", "FAILED: unit is null");
 				return;
 			}
 			if (!unit.CanTrain)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Train with Unit(" + unit.UnitNbr + ") - can't train", this.gameObject);
+				CmdLog?.LogCommand("TRAIN", $"{unit.UnitType}#{unit.UnitNbr} -> {unitType}", "FAILED: unit can't train");
 				return;
 			}
 			if (!unit.IsBuilt)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Train with Unit(" + unit.UnitNbr + ") - is not yet finished being built", this.gameObject);
+				CmdLog?.LogCommand("TRAIN", $"{unit.UnitType}#{unit.UnitNbr} -> {unitType}", "FAILED: building not finished");
 				return;
 			}
 			if (!unit.CanTrainUnit(unitType))
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Train with Unit(" + unit.UnitNbr + ") - can't train unitType " + unitType, this.gameObject);
+				CmdLog?.LogCommand("TRAIN", $"{unit.UnitType}#{unit.UnitNbr} -> {unitType}", $"FAILED: can't train {unitType}");
 				return;
 			}
 
-			GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName + " Train: Unit(" + unit.UnitNbr + ") " + unitType, this.gameObject);
+			CmdLog?.LogCommand("TRAIN", $"{unit.UnitType}#{unit.UnitNbr} -> {unitType} (gold={Gold})", "SUCCESS (dispatched)");
 			GameManager.Instance.Events.TrainEventHandler(this, new TrainEventArgs(unit, unitType));
 		}
 
@@ -209,40 +178,32 @@ namespace GameManager
 		{
 			if (unit == null)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Attack with Unit(" + unit.UnitNbr + ") - is null", this.gameObject);
+				CmdLog?.LogCommand("ATTACK", "unit=null", "FAILED: unit is null");
 				return;
 			}
 			if (target == null)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Attack with Unit(" + unit.UnitNbr + ") - target " + target + " is null", this.gameObject);
+				CmdLog?.LogCommand("ATTACK", $"{unit.UnitType}#{unit.UnitNbr} at {unit.GridPosition} -> target=null", "FAILED: target is null");
 				return;
 			}
 			if (!unit.CanAttack)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Attack with Unit(" + unit.UnitNbr + ") - can't attack", this.gameObject);
+				CmdLog?.LogCommand("ATTACK", $"{unit.UnitType}#{unit.UnitNbr} at {unit.GridPosition} -> {target.UnitType}#{target.UnitNbr}", "FAILED: unit can't attack");
 				return;
 			}
 			if (target.UnitType == UnitType.MINE)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Attack with Unit(" + unit.UnitNbr + ") - can't attack a mine", this.gameObject);
+				CmdLog?.LogCommand("ATTACK", $"{unit.UnitType}#{unit.UnitNbr} -> MINE#{target.UnitNbr}", "FAILED: can't attack a mine");
 				return;
 			}
 			if (unit.Agent.GetComponent<AgentController>().Agent.AgentNbr
 				== target.Agent.GetComponent<AgentController>().Agent.AgentNbr)
 			{
-				GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName
-					+ " ERROR: Can't Attack with Unit(" + unit.UnitNbr + ") - can't attack your own units", this.gameObject);
+				CmdLog?.LogCommand("ATTACK", $"{unit.UnitType}#{unit.UnitNbr} -> {target.UnitType}#{target.UnitNbr}", "FAILED: can't attack own units");
 				return;
 			}
 
-			GameManager.Instance.Log(unit.Agent.GetComponent<AgentController>().Agent.AgentName + " Attack: Unit(" + unit.UnitNbr
-				        + ") " + unit.GridPosition + " attacking Agent("
-				        + target.GetComponent<Unit>().Agent.GetComponent<AgentController>().Agent.AgentNbr
-				        + ") Unit(" + target.UnitNbr + ") " + target.GetComponent<Unit>().GridPosition, this.gameObject);
+			CmdLog?.LogCommand("ATTACK", $"{unit.UnitType}#{unit.UnitNbr} at {unit.GridPosition} -> {target.UnitType}#{target.UnitNbr} at {target.GridPosition}", "SUCCESS (dispatched)");
 			GameManager.Instance.Events.AttackEventHandler(this, new AttackEventArgs(unit, target));
 		}
 

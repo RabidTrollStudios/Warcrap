@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,6 @@ namespace GameManager.Graph
 {
 	internal class Graph<T> where T : IColorable, IBuildable, IPositionable
     {
-        public static double[,] costEstimate;
         public static bool isUniform = false;
 
         public Dictionary<int, Node<T>> nodesDict = new Dictionary<int, Node<T>>();
@@ -45,26 +44,14 @@ namespace GameManager.Graph
             end.edges.Add(edge);
         }
 
-		public void CalculateEstimatedCosts()
-		{
-			costEstimate = new double[nodesDict.Keys.Count, nodesDict.Keys.Count];
-
-			foreach (int i in nodesDict.Keys)
-			{
-				foreach (int j in nodesDict.Keys)
-				{
-					if (i == j)
-					{
-						costEstimate[i, j] = 0;
-					}
-					else
-					{
-						costEstimate[i, j] = Vector3.Distance(nodesDict[i].item.GetPosition(),
-															  nodesDict[j].item.GetPosition());
-					}
-				}
-			}
-		}
+        /// <summary>
+        /// Compute the heuristic (Euclidean distance) between two nodes on the fly
+        /// </summary>
+        private double EstimateCost(int nodeA, int nodeB)
+        {
+            return Vector3.Distance(nodesDict[nodeA].item.GetPosition(),
+                                    nodesDict[nodeB].item.GetPosition());
+        }
 
         public int FindClosestNeighborToTarget(int startNodeNbr, int endNodeNbr)
         {
@@ -73,9 +60,10 @@ namespace GameManager.Graph
             foreach (Edge<T> edge in nodesDict[endNodeNbr].edges)
             {
                 Node<T> neighbor = edge.GetNeighbor(nodesDict[startNodeNbr]);
-                if (costEstimate[startNodeNbr, neighbor.number] < closestDistance)
+                double dist = EstimateCost(startNodeNbr, neighbor.number);
+                if (dist < closestDistance)
                 {
-                    closestDistance = costEstimate[startNodeNbr, neighbor.number];
+                    closestDistance = dist;
                     closestNodeNbr = neighbor.number;
                 }
             }
@@ -102,9 +90,16 @@ namespace GameManager.Graph
                 node.ResetSearchVariables();
             }
         }
-        public List<int> AStarSearch(int startNodeNbr, int endNodeNbr)
+        /// <summary>Number of node expansions used in the last AStarSearch call</summary>
+        public int LastSearchExpansions { get; private set; }
+
+        /// <summary>Why the last search ended: "found", "cap", "exhausted", "same_node", "end_blocked"</summary>
+        public string LastSearchResult { get; private set; }
+
+        public List<int> AStarSearch(int startNodeNbr, int endNodeNbr, int maxExpansions = 2000)
         {
 			List<int> path = new List<int>();
+            LastSearchExpansions = 0;
 
             // Prepare for the search
             ResetSearch();
@@ -113,19 +108,35 @@ namespace GameManager.Graph
 
             if (startNodeNbr == endNodeNbr)
             {
+                LastSearchResult = "same_node";
+                return path;
+            }
+
+            // Early-exit: if the end node is not walkable (terrain/building), no path can reach it
+            if (!nodesDict[endNodeNbr].item.IsWalkable())
+            {
+                LastSearchResult = "end_blocked";
                 return path;
             }
 
             // Add the first node to the priorityQueue
             nodesDict[startNodeNbr].cost = 0.0f;
             PriorityNode<Node<T>> currPNode = new PriorityNode<Node<T>>(nodesDict[startNodeNbr],
-                         nodesDict[startNodeNbr].cost + costEstimate[startNodeNbr, endNodeNbr]);
+                         nodesDict[startNodeNbr].cost + EstimateCost(startNodeNbr, endNodeNbr));
             nodesDict[startNodeNbr].priorityNode = currPNode;
             pq.Enqueue(nodesDict[startNodeNbr].priorityNode);
 
             // While there are still items in the priorityQueue
+            int expansions = 0;
             while (pq.Count > 0)
             {
+                // Abort if we've exceeded the expansion budget
+                if (++expansions > maxExpansions)
+                {
+                    LastSearchExpansions = expansions;
+                    LastSearchResult = "cap";
+                    return path;
+                }
                 // Pop off the first item in the queue
                 currPNode = pq.Dequeue();
 
@@ -142,6 +153,8 @@ namespace GameManager.Graph
 		            // Reverse the path
 		            path.Reverse();
 					path.RemoveAt(0);
+                    LastSearchExpansions = expansions;
+                    LastSearchResult = "found";
 		            return path;
 				}
 
@@ -151,11 +164,11 @@ namespace GameManager.Graph
                     // Get the neighbor of this node via the edge
                     Node<T> neighbor = edge.GetNeighbor(currPNode.item);
 
-                    // If the node can be walked through or if it is the end node
-                    if (neighbor.item.IsBuildable()) // || neighbor.number == endNodeNbr)
+                    // If the node can be walked through (walkable = passable terrain, ignores mobile units)
+                    if (neighbor.item.IsWalkable())
                     {
                         // Calculate the new cost through this node to this neighbor
-                        double newCost = currPNode.item.cost + edge.cost + costEstimate[neighbor.number, endNodeNbr];
+                        double newCost = currPNode.item.cost + edge.cost + EstimateCost(neighbor.number, endNodeNbr);
 
                         // If the item is already in the queue, update its priority if necessary
                         if (neighbor.priorityNode != null && newCost < neighbor.priorityNode.priority)
@@ -176,7 +189,8 @@ namespace GameManager.Graph
                 }
             }
 
-			//GameManager.Instance.Log("Path not found");
+			LastSearchExpansions = expansions;
+			LastSearchResult = "exhausted";
 			return path;
         }
     }

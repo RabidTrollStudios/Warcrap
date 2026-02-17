@@ -95,10 +95,12 @@ namespace GameManager.GameElements
 			// If we have a path, move along it
 			if (path.Count > 0)
 			{
-				// If the next cell in the path is buildable, move forward
+				// If the next cell in the path is buildable (truly empty), move forward
 				Vector3Int nextTarget = path[0];
-				if (GameManager.Instance.Map.IsGridPositionBuildable(nextTarget)) // || oldGridPosition == nextTarget)
+				if (GameManager.Instance.Map.IsGridPositionBuildable(nextTarget))
 				{
+					localAvoidWaitFrames = 0;
+
 					// Calculate our velocity toward our target and move along it
 					velocity = nextTarget - WorldPosition;
 					velocity = Utility.SafeNormalize(velocity);
@@ -129,12 +131,78 @@ namespace GameManager.GameElements
 						WorldPosition += velocity * Speed;
 					}
 				}
-				// If the next cell is NOT buildable, try to find a new path
-				else if (!GameManager.Instance.Map.IsGridPositionBuildable(nextTarget))
+				// Next cell is occupied — use local avoidance for mobile units, full re-path for terrain/buildings
+				else
 				{
-					UpdatePath(GridPosition, TargetUnitType, TargetGridPos);
+					// Walkable but not buildable = blocked by a mobile unit (temporary obstacle)
+					if (GameManager.Instance.Map.IsGridPositionWalkable(nextTarget))
+					{
+						localAvoidWaitFrames++;
+
+						// Phase 1: Wait a few frames — the blocker may move on its own
+						if (localAvoidWaitFrames <= 3)
+							return;
+
+						// Phase 2: Try to sidestep around the blocker
+						Vector3Int? sidestep = FindLocalSidestep();
+						if (sidestep.HasValue)
+						{
+							path.Insert(0, sidestep.Value);
+							localAvoidWaitFrames = 0;
+							return;
+						}
+
+						// Phase 3: After extended wait, fall back to full re-path
+						if (localAvoidWaitFrames > 10)
+						{
+							UpdatePath(GridPosition, TargetUnitType, TargetGridPos);
+							localAvoidWaitFrames = 0;
+						}
+					}
+					else
+					{
+						// Not walkable = terrain or building — full re-path immediately
+						localAvoidWaitFrames = 0;
+						UpdatePath(GridPosition, TargetUnitType, TargetGridPos);
+					}
 				}
 			}
+		}
+
+		/// <summary>
+		/// Find a free adjacent cell that makes progress toward the next path waypoint.
+		/// Returns null if no suitable sidestep exists.
+		/// </summary>
+		private Vector3Int? FindLocalSidestep()
+		{
+			// Aim toward the cell after the blocked one, or the blocked cell itself
+			Vector3Int target = path.Count > 1 ? path[1] : path[0];
+
+			Vector3Int bestStep = Vector3Int.zero;
+			float bestDist = float.MaxValue;
+			bool found = false;
+
+			for (int dx = -1; dx <= 1; dx++)
+			{
+				for (int dy = -1; dy <= 1; dy++)
+				{
+					if (dx == 0 && dy == 0) continue;
+					Vector3Int candidate = GridPosition + new Vector3Int(dx, dy, 0);
+					if (Utility.IsValidGridLocation(candidate)
+						&& GameManager.Instance.Map.IsGridPositionBuildable(candidate))
+					{
+						float dist = Vector3.Distance((Vector3)candidate, (Vector3)target);
+						if (dist < bestDist)
+						{
+							bestDist = dist;
+							bestStep = candidate;
+							found = true;
+						}
+					}
+				}
+			}
+
+			return found ? (Vector3Int?)bestStep : null;
 		}
 
 		private void UpdateDebuggingInfo()
@@ -187,14 +255,36 @@ namespace GameManager.GameElements
 		}
 
 		/// <summary>
-		/// Update the path to the target but wait a few frames between each call
+		/// Update the path to the target with exponential backoff on failure.
+		/// First retry is fast (transient blocks), subsequent retries slow down.
+		/// After repeated failures, the unit goes idle.
+		/// Use forceImmediate=true to bypass the cooldown throttle (for initial path computation).
 		/// </summary>
-		private void UpdatePath(Vector3Int gridPosition, UnitType targetUnitType, Vector3Int targetGridPos)
+		private void UpdatePath(Vector3Int gridPosition, UnitType targetUnitType, Vector3Int targetGridPos, bool forceImmediate = false)
 		{
-			if (pathUpdateCounter > 60 / Constants.GAME_SPEED)
+			int cooldown = (60 / Constants.GAME_SPEED) * pathBackoffMultiplier;
+			if (forceImmediate || pathUpdateCounter > cooldown)
 			{
 				pathUpdateCounter = 0;
 				path = GameManager.Instance.Map.GetPathToUnit(GridPosition, targetUnitType, targetGridPos);
+
+				if (path.Count == 0)
+				{
+					pathFailCount++;
+					pathBackoffMultiplier = Math.Min(pathBackoffMultiplier * 2, 8);
+
+					if (pathFailCount >= 5)
+					{
+						CurrentAction = UnitAction.IDLE;
+						pathFailCount = 0;
+						pathBackoffMultiplier = 1;
+					}
+				}
+				else
+				{
+					pathFailCount = 0;
+					pathBackoffMultiplier = 1;
+				}
 			}
 		}
 
@@ -203,7 +293,6 @@ namespace GameManager.GameElements
 		/// </summary>
 		private void UpdateMove()
 		{
-			GameManager.Instance.Log("UpdateMove: " + path.Count, this.gameObject);
 			if (path == null || path.Count == 0)
 			{
 				CurrentAction = UnitAction.IDLE;

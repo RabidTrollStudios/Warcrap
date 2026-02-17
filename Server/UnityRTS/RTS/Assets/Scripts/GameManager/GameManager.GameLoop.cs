@@ -60,6 +60,11 @@ namespace GameManager
             }
 			else if (gameState == GameState.FINISHED)
 			{
+				foreach (GameObject agent in Agents.Values)
+				{
+					agent.GetComponent<AgentController>().Agent.CloseCommandLog();
+				}
+
 				if (dllNames == null)
 				{
 					DisplaySingleAgentResults();

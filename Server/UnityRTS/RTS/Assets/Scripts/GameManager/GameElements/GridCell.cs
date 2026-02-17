@@ -13,6 +13,7 @@ namespace GameManager.GameElements
 		internal TileBase Tile { get; set; }
 
 		private bool isBuildable;
+		private bool isWalkable;
 
 		#region Interface Implementations
 		public void ChangeColor(Color color)
@@ -26,12 +27,17 @@ namespace GameManager.GameElements
 
 		public void SetBuildable(bool isBuildable)
 		{
-			//if (!isBuildable)
-			//{ TileMap.SetColor(Position, Color.black); }
-			//else
-			//{ TileMap.SetColor(Position, Color.white); }
-
 			this.isBuildable = isBuildable;
+		}
+
+		public bool IsWalkable()
+		{
+			return this.isWalkable;
+		}
+
+		public void SetWalkable(bool isWalkable)
+		{
+			this.isWalkable = isWalkable;
 		}
 
 		public Vector3 GetPosition()
@@ -47,6 +53,7 @@ namespace GameManager.GameElements
 			this.Position = position;
 			this.Tile = tileMap.GetTile(Position);
 			this.isBuildable = true;
+			this.isWalkable = true;
 		}
 	}
 }

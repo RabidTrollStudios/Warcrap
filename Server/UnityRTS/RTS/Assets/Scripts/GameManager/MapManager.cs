@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using AgentSDK;
 using GameManager.GameElements;
@@ -13,6 +14,7 @@ namespace GameManager
 	/// </summary>
 	public class MapManager
 	{
+		private bool hasLoggedPathDiag = false;
 		/// <summary>
 		/// Size of the map, +x is "right", +y is "up", z is ignored
 		/// </summary>
@@ -108,6 +110,7 @@ namespace GameManager
 						if (tile != null)
 						{
 							GridCells[i, j].SetBuildable(false);
+							GridCells[i, j].SetWalkable(false);
 						}
 					}
 				}
@@ -140,7 +143,6 @@ namespace GameManager
 				}
 			}
 
-			Graph.CalculateEstimatedCosts();
 		}
 
 		/// <summary>
@@ -152,9 +154,27 @@ namespace GameManager
 		}
 
 		/// <summary>
+		/// Determines if a specific tile is walkable (passable for pathfinding).
+		/// Walkable cells include those occupied by mobile units but not terrain or buildings.
+		/// </summary>
+		public bool IsGridPositionWalkable(Vector3Int position)
+		{
+			return GridCells[position.x, position.y].IsWalkable();
+		}
+
+		/// <summary>
 		/// Determines if the unit can be built in that area (based on size of unit)
 		/// </summary>
 		public bool IsAreaBuildable(UnitType unitType, Vector3Int gridPosition)
+		{
+			return IsAreaBuildable(unitType, gridPosition, null);
+		}
+
+		/// <summary>
+		/// Determines if the unit can be built in that area, optionally ignoring
+		/// a set of positions (e.g., the building worker's cell).
+		/// </summary>
+		public bool IsAreaBuildable(UnitType unitType, Vector3Int gridPosition, HashSet<Vector3Int> excludePositions)
 		{
 			Vector3Int gridPos = Vector3Int.zero;
 			Vector3Int size = Constants.UNIT_SIZE[unitType];
@@ -164,6 +184,9 @@ namespace GameManager
 				for (int j = 0; j < size.y; ++j)
 				{
 					gridPos = gridPosition + new Vector3Int(i, -j, 0);
+
+					if (excludePositions != null && excludePositions.Contains(gridPos))
+						continue;
 
 					if (!Utility.IsValidGridLocation(gridPos)
 						|| !IsGridPositionBuildable(gridPos))
@@ -180,6 +203,15 @@ namespace GameManager
 		/// </summary>
 		public bool IsBoundedAreaBuildable(UnitType unitType, Vector3Int gridPosition)
 		{
+			return IsBoundedAreaBuildable(unitType, gridPosition, null);
+		}
+
+		/// <summary>
+		/// Determines if the unit can be built in that area with a walkable "boundary" around it,
+		/// optionally ignoring a set of positions (e.g., friendly workers who can move).
+		/// </summary>
+		public bool IsBoundedAreaBuildable(UnitType unitType, Vector3Int gridPosition, HashSet<Vector3Int> excludePositions)
+		{
 			Vector3Int gridPos = Vector3Int.zero;
 			Vector3Int size = Constants.UNIT_SIZE[unitType];
 
@@ -188,6 +220,9 @@ namespace GameManager
 				for (int j = -1; j <= size.y; ++j)
 				{
 					gridPos = gridPosition + new Vector3Int(i, -j, 0);
+
+					if (excludePositions != null && excludePositions.Contains(gridPos))
+						continue;
 
 					if (!Utility.IsValidGridLocation(gridPos)
 						|| !IsGridPositionBuildable(gridPos))
@@ -271,7 +306,11 @@ namespace GameManager
 		public List<Vector3Int> GetPathToUnit(Vector3Int gridPosition, UnitType unitType, Vector3Int unitGridPosition)
 		{
 			List<Vector3Int> path = new List<Vector3Int>();
+			List<Vector3Int> allNeighbors = GetGridPositionsNearUnit(unitType, unitGridPosition);
 			List<Vector3Int> positions = GetBuildableGridPositionsNearUnit(unitType, unitGridPosition);
+
+			// One-time diagnostic dump for failed BUILD pathfinding
+			bool shouldLog = !hasLoggedPathDiag;
 
 			foreach (var position in positions)
 			{
@@ -280,6 +319,54 @@ namespace GameManager
 				{
 					return path;
 				}
+				if (shouldLog)
+				{
+					GameManager.Instance.Log($"PATH_DIAG: {gridPosition}->{position} failed: {Graph.LastSearchResult} expansions={Graph.LastSearchExpansions}",
+						GameManager.Instance.gameObject);
+				}
+			}
+
+			if (shouldLog && path.Count == 0)
+			{
+				hasLoggedPathDiag = true;
+				string diagPath = Application.dataPath + "/../PathDiag.txt";
+				using (var w = new StreamWriter(diagPath, false))
+				{
+					w.WriteLine($"GetPathToUnit FAILED");
+					w.WriteLine($"  from={gridPosition} to={unitType} at {unitGridPosition}");
+					w.WriteLine($"  mapSize={MapSize}");
+					w.WriteLine($"  totalNeighbors={allNeighbors.Count} buildableNeighbors={positions.Count}");
+					w.WriteLine();
+					w.WriteLine("All neighbors:");
+					foreach (var n in allNeighbors)
+					{
+						bool buildable = IsGridPositionBuildable(n);
+						w.WriteLine($"  {n} buildable={buildable}");
+					}
+					w.WriteLine();
+					w.WriteLine("A* attempts (buildable neighbors only):");
+					// Re-run to capture per-attempt diagnostics
+					foreach (var position in positions)
+					{
+						GetPathBetweenGridPositions(gridPosition, position);
+						w.WriteLine($"  {gridPosition} -> {position}: result={Graph.LastSearchResult} expansions={Graph.LastSearchExpansions}");
+					}
+					w.WriteLine();
+					w.WriteLine($"Start cell {gridPosition} buildable={IsGridPositionBuildable(gridPosition)}");
+					// Check if start cell's immediate neighbors are buildable
+					w.WriteLine("Start cell neighbors:");
+					for (int dx = -1; dx <= 1; dx++)
+					{
+						for (int dy = -1; dy <= 1; dy++)
+						{
+							if (dx == 0 && dy == 0) continue;
+							var neighbor = gridPosition + new Vector3Int(dx, dy, 0);
+							if (Utility.IsValidGridLocation(neighbor))
+								w.WriteLine($"  {neighbor} buildable={IsGridPositionBuildable(neighbor)}");
+						}
+					}
+				}
+				GameManager.Instance.Log($"PATH_DIAG: wrote diagnostics to {diagPath}", GameManager.Instance.gameObject);
 			}
 			return path;
 		}
@@ -318,10 +405,13 @@ namespace GameManager
 				{
 					gridPos = gridPosition + new Vector3Int(i, -j, 0);
 
-					if (Utility.IsValidGridLocation(gridPos) &&
-						IsGridPositionBuildable(gridPos) != isBuildable)
+					if (Utility.IsValidGridLocation(gridPos))
 					{
 						GridCells[gridPos.x, gridPos.y].SetBuildable(isBuildable);
+						// Mobile units don't block pathfinding — keep cell walkable
+						if (isBuildable || !Constants.CAN_MOVE[unitType])
+							GridCells[gridPos.x, gridPos.y].SetWalkable(isBuildable);
+						// else: mobile unit occupying cell → isBuildable=false, isWalkable stays true
 					}
 				}
 			}
