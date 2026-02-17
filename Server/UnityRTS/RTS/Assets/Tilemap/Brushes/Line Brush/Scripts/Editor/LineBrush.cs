@@ -8,7 +8,7 @@ using System.Linq;
 namespace UnityEditor
 {
     [CustomGridBrush(true, false, false, "Line Brush")]
-    public class LineBrush : GridBrush
+    public class LineBrush : Tilemaps.GridBrush
     {
         public bool lineStartActive = false;
         public bool fillGaps = false;
@@ -159,7 +159,7 @@ namespace UnityEditor
     }
 
     [CustomEditor(typeof(LineBrush))]
-    public class LineBrushEditor : GridBrushEditor
+    public class LineBrushEditor : Tilemaps.GridBrushEditor
     {
         private LineBrush lineBrush { get { return target as LineBrush; } }
 

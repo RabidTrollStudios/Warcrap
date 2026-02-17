@@ -4,7 +4,6 @@ using System.Reflection;
 using UnityEditor.Sprites;
 using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.Tilemaps;
 using Object = UnityEngine.Object;
 

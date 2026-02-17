@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PlanningAgent</name>
+    </assembly>
+    <members>
+        <member name="T:PlanningAgent.PlanningAgent">
+            <summary>Planning Agent is the over-head planner that decided where
+             individual units go and what tasks they perform.  Low-level
+             AI is handled by other classes (like pathfinding).
+            </summary>
+        </member>
+        <member name="M:PlanningAgent.PlanningAgent.BuildBuilding(AgentSDK.UnitType,AgentSDK.IGameState,AgentSDK.IAgentActions)">
+            <summary>
+            Build a building
+            </summary>
+        </member>
+        <member name="M:PlanningAgent.PlanningAgent.AttackEnemy(System.Collections.Generic.List{System.Int32},AgentSDK.IGameState,AgentSDK.IAgentActions)">
+            <summary>
+            Attack the enemy
+            </summary>
+        </member>
+        <member name="M:PlanningAgent.PlanningAgent.InitializeMatch">
+            <summary>
+            Called before each match between two agents.  Matches have
+            multiple rounds.
+            </summary>
+        </member>
+        <member name="M:PlanningAgent.PlanningAgent.InitializeRound(AgentSDK.IGameState)">
+            <summary>
+            Called at the beginning of each round in a match.
+            </summary>
+        </member>
+        <member name="M:PlanningAgent.PlanningAgent.Update(AgentSDK.IGameState,AgentSDK.IAgentActions)">
+            <summary>
+            Update the GameManager - called once per frame
+            </summary>
+        </member>
+        <member name="M:PlanningAgent.PlanningAgent.FindClosestUnits(System.Collections.Generic.List{System.Int32},AgentSDK.IGameState)">
+            <summary>
+            Find closest enemy units sorted by distance to main base
+            Returns dictionary of unitNbr -> distance
+            </summary>
+        </member>
+    </members>
+</doc>
