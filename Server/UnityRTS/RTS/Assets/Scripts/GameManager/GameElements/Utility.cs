@@ -33,21 +33,29 @@ namespace GameManager.GameElements
 		/// <summary>
 		/// Convert a gridcell's number to a Vector3Int in the grid
 		/// </summary>
-		/// <param name="gridNbr"></param>
-		/// <returns></returns>
 		public static Vector3Int IntToGrid(int gridNbr)
+			=> IntToGrid(gridNbr, GameManager.Instance.Map.MapSize);
+
+		/// <summary>
+		/// Convert a gridcell's number to a Vector3Int using an explicit map size
+		/// </summary>
+		public static Vector3Int IntToGrid(int gridNbr, Vector3Int mapSize)
 		{
-			return new Vector3Int(gridNbr / GameManager.Instance.Map.MapSize.y, gridNbr % GameManager.Instance.Map.MapSize.y, 0);
+			return new Vector3Int(gridNbr / mapSize.y, gridNbr % mapSize.y, 0);
 		}
 
 		/// <summary>
 		/// Convert a Vector3Int in the grid to the gridcell's number
 		/// </summary>
-		/// <param name="position"></param>
-		/// <returns></returns>
 		public static int GridToInt(Vector3Int position)
+			=> GridToInt(position, GameManager.Instance.Map.MapSize);
+
+		/// <summary>
+		/// Convert a Vector3Int in the grid to the gridcell's number using an explicit map size
+		/// </summary>
+		public static int GridToInt(Vector3Int position, Vector3Int mapSize)
 		{
-			return position.x * GameManager.Instance.Map.MapSize.y + position.y;
+			return position.x * mapSize.y + position.y;
 		}
 
 		/// <summary>
@@ -77,12 +85,16 @@ namespace GameManager.GameElements
 		/// <summary>
 		/// Is the Vector3Int a valid position in the world
 		/// </summary>
-		/// <param name="gridPosition">position to test</param>
-		/// <returns>true if in the world</returns>
 		public static bool IsValidGridLocation(Vector3Int gridPosition)
+			=> IsValidGridLocation(gridPosition, GameManager.Instance.Map.MapSize);
+
+		/// <summary>
+		/// Is the Vector3Int a valid position in the world using an explicit map size
+		/// </summary>
+		public static bool IsValidGridLocation(Vector3Int gridPosition, Vector3Int mapSize)
 		{
-			return !(gridPosition.x < 0 || gridPosition.x >= GameManager.Instance.Map.MapSize.x
-					|| gridPosition.y < 0 || gridPosition.y >= GameManager.Instance.Map.MapSize.y);
+			return !(gridPosition.x < 0 || gridPosition.x >= mapSize.x
+					|| gridPosition.y < 0 || gridPosition.y >= mapSize.y);
 		}
 
 		/// <summary>
@@ -95,38 +107,20 @@ namespace GameManager.GameElements
 		public static Direction ConvertPositionToDirection(Vector3Int startPosition, Vector3Int endPosition)
 		{
 			Vector3Int direction = endPosition - startPosition;
-			if (direction.x == 0 && direction.y == -1)
-			{
-				return Direction.S;
-			}
-			else if (direction.x == 1 && direction.y == -1)
-			{
-				return Direction.SE;
-			}
-			else if (direction.x == 1 && direction.y == 0)
-			{
-				return Direction.E;
-			}
-			else if (direction.x == 1 && direction.y == 1)
-			{
-				return Direction.NE;
-			}
-			else if (direction.x == 0 && direction.y == 1)
-			{
-				return Direction.N;
-			}
-			else if (direction.x == -1 && direction.y == 1)
-			{
-				return Direction.NW;
-			}
-			else if (direction.x == -1 && direction.y == 0)
-			{
-				return Direction.W;
-			}
-			else //if (direction.x == -1 && direction.y == -1)
-			{
-				return Direction.SW;
-			}
+
+			// Clamp to unit steps so large deltas like (5,3) map correctly
+			int cx = direction.x == 0 ? 0 : (direction.x > 0 ? 1 : -1);
+			int cy = direction.y == 0 ? 0 : (direction.y > 0 ? 1 : -1);
+
+			if (cx == 0 && cy == 0) return Direction.None;
+			if (cx == 0 && cy == -1) return Direction.S;
+			if (cx == 1 && cy == -1) return Direction.SE;
+			if (cx == 1 && cy == 0) return Direction.E;
+			if (cx == 1 && cy == 1) return Direction.NE;
+			if (cx == 0 && cy == 1) return Direction.N;
+			if (cx == -1 && cy == 1) return Direction.NW;
+			if (cx == -1 && cy == 0) return Direction.W;
+			return Direction.SW;
 		}
 	}
 }

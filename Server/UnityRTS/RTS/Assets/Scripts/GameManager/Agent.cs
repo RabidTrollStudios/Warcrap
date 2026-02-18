@@ -11,6 +11,8 @@ using System.Text.RegularExpressions;
 
 [assembly: InternalsVisibleTo("GameManager")]
 [assembly: InternalsVisibleTo("AgentController")]
+[assembly: InternalsVisibleTo("GameManager.Tests.EditMode")]
+[assembly: InternalsVisibleTo("GameManager.Tests.PlayMode")]
 
 namespace GameManager
 {

@@ -126,7 +126,7 @@ namespace GameManager
         /// </summary>
         public static readonly Dictionary<UnitType, float> HEALTH = new Dictionary<UnitType, float>()
         {
-            { UnitType.MINE,        GameManager.Instance.StartingMineGold },
+            { UnitType.MINE,        10000f },
             { UnitType.WORKER,      50.0f },
             { UnitType.SOLDIER,     100.0f },
             { UnitType.ARCHER,      75.0f },
@@ -286,6 +286,10 @@ namespace GameManager
 		/// </summary>
 		internal static void CalculateGameConstants()
         {
+	        // Update mine health from GameManager (can't do this in the static initializer
+	        // because the singleton may not exist yet when the type initializer runs)
+	        HEALTH[UnitType.MINE] = GameManager.Instance.StartingMineGold;
+
 	        SCALAR_MOVING_SPEED = GAME_SPEED;
 	        MOVING_SPEED = new Dictionary<UnitType, float>()
 	        {
@@ -314,7 +318,7 @@ namespace GameManager
 
 			MINING_CAPACITY = new Dictionary<UnitType, float>(GameConstants.MINING_CAPACITY);
 
-			SCALAR_CREATION_TIME = 1f / GAME_SPEED;
+			SCALAR_CREATION_TIME = GAME_SPEED > 0 ? 1f / GAME_SPEED : float.PositiveInfinity;
 	        CREATION_TIME = new Dictionary<UnitType, float>()
 	        {
 		        { UnitType.MINE,        0.0f },

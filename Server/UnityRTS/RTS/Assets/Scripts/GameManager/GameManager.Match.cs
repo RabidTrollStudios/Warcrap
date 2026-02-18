@@ -190,12 +190,16 @@ namespace GameManager
 
 		private void PlaceUnits()
         {
-	        Vector3Int workerLocation = mapManager.GetRandomBuildableLocation(UnitType.BASE);
-	        Vector3Int mineLocation = mapManager.GetRandomBuildableLocation(UnitType.MINE);
 	        int initAgentNbr = Random.Range(0, 2);
 
+	        // Find and place sequentially so each placement marks its area unbuildable
+	        // before the next location is chosen, preventing overlap
+	        Vector3Int workerLocation = mapManager.GetRandomBuildableLocation(UnitType.BASE);
 	        unitManager.PlaceUnit(Agents[initAgentNbr], workerLocation, UnitType.WORKER, Color.white);
+
+	        Vector3Int mineLocation = mapManager.GetRandomBuildableLocation(UnitType.MINE);
 	        unitManager.PlaceUnit(Agents[initAgentNbr], mineLocation, UnitType.MINE, Color.white);
+
 	        unitManager.PlaceUnit(Agents[(initAgentNbr + 1) % 2], FindMirroredLocation(workerLocation, UnitType.BASE), UnitType.WORKER, Color.white);
 	        unitManager.PlaceUnit(Agents[(initAgentNbr + 1) % 2], FindMirroredLocation(mineLocation, UnitType.BASE), UnitType.MINE, Color.white);
         }

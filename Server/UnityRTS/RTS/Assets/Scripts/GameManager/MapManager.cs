@@ -82,7 +82,7 @@ namespace GameManager
 				{
 					Vector3Int position = new Vector3Int(i, j, 0);
 					GridCells[i, j] = new GridCell(mainTilemap, position);
-					Graph.AddNode(Utility.GridToInt(position), GridCells[i, j]);
+					Graph.AddNode(Utility.GridToInt(position, MapSize), GridCells[i, j]);
 				}
 			}
 
@@ -134,8 +134,8 @@ namespace GameManager
 							if (m >= 0 && n >= 0 && m < MapSize.x && n < MapSize.y
 								&& (i != m || j != n))
 							{
-								Graph.AddEdge(Utility.GridToInt(new Vector3Int(i, j, 0)),
-											  Utility.GridToInt(new Vector3Int(m, n, 0)),
+								Graph.AddEdge(Utility.GridToInt(new Vector3Int(i, j, 0), MapSize),
+											  Utility.GridToInt(new Vector3Int(m, n, 0), MapSize),
 											  Vector3.Distance(GridCells[i, j].Position, GridCells[m, n].Position));
 							}
 						}
@@ -188,7 +188,7 @@ namespace GameManager
 					if (excludePositions != null && excludePositions.Contains(gridPos))
 						continue;
 
-					if (!Utility.IsValidGridLocation(gridPos)
+					if (!Utility.IsValidGridLocation(gridPos, MapSize)
 						|| !IsGridPositionBuildable(gridPos))
 					{
 						return false;
@@ -224,7 +224,7 @@ namespace GameManager
 					if (excludePositions != null && excludePositions.Contains(gridPos))
 						continue;
 
-					if (!Utility.IsValidGridLocation(gridPos)
+					if (!Utility.IsValidGridLocation(gridPos, MapSize)
 						|| !IsGridPositionBuildable(gridPos))
 					{
 						return false;
@@ -254,22 +254,22 @@ namespace GameManager
 			for (int i = gridPosition.x - 1; i <= gridPosition.x + Constants.UNIT_SIZE[unitType].x; ++i)
 			{
 				gridPos = new Vector3Int(i, gridPosition.y + 1, 0);
-				if (Utility.IsValidGridLocation(gridPos))
+				if (Utility.IsValidGridLocation(gridPos, MapSize))
 					positions.Add(gridPos);
 
 				gridPos = new Vector3Int(i, gridPosition.y - Constants.UNIT_SIZE[unitType].y, 0);
-				if (Utility.IsValidGridLocation(gridPos))
+				if (Utility.IsValidGridLocation(gridPos, MapSize))
 					positions.Add(gridPos);
 			}
 
 			for (int j = gridPosition.y - Constants.UNIT_SIZE[unitType].y + 1; j <= gridPosition.y; ++j)
 			{
 				gridPos = new Vector3Int(gridPosition.x - 1, j, 0);
-				if (Utility.IsValidGridLocation(gridPos))
+				if (Utility.IsValidGridLocation(gridPos, MapSize))
 					positions.Add(gridPos);
 
 				gridPos = new Vector3Int(gridPosition.x + Constants.UNIT_SIZE[unitType].x, j, 0);
-				if (Utility.IsValidGridLocation(gridPos))
+				if (Utility.IsValidGridLocation(gridPos, MapSize))
 					positions.Add(gridPos);
 			}
 
@@ -361,7 +361,7 @@ namespace GameManager
 						{
 							if (dx == 0 && dy == 0) continue;
 							var neighbor = gridPosition + new Vector3Int(dx, dy, 0);
-							if (Utility.IsValidGridLocation(neighbor))
+							if (Utility.IsValidGridLocation(neighbor, MapSize))
 								w.WriteLine($"  {neighbor} buildable={IsGridPositionBuildable(neighbor)}");
 						}
 					}
@@ -378,14 +378,14 @@ namespace GameManager
 		{
 			List<Vector3Int> path = new List<Vector3Int>();
 
-			int start = Utility.GridToInt(startGridPosition);
-			int end = Utility.GridToInt(endGridPosition);
+			int start = Utility.GridToInt(startGridPosition, MapSize);
+			int end = Utility.GridToInt(endGridPosition, MapSize);
 
 			List<int> pathOfInts = Graph.AStarSearch(start, end);
 
 			foreach (var nodeNbr in pathOfInts)
 			{
-				path.Add(Utility.IntToGrid(nodeNbr));
+				path.Add(Utility.IntToGrid(nodeNbr, MapSize));
 			}
 
 			return path;
@@ -405,7 +405,7 @@ namespace GameManager
 				{
 					gridPos = gridPosition + new Vector3Int(i, -j, 0);
 
-					if (Utility.IsValidGridLocation(gridPos))
+					if (Utility.IsValidGridLocation(gridPos, MapSize))
 					{
 						GridCells[gridPos.x, gridPos.y].SetBuildable(isBuildable);
 						// Mobile units don't block pathfinding — keep cell walkable

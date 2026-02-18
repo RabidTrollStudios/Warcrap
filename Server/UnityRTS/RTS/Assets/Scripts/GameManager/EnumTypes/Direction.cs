@@ -1,10 +1,14 @@
 ﻿namespace GameManager.EnumTypes
 {
 	/// <summary>
-	/// Represents the 8 directions for animations
+	/// Represents the 8 directions for animations, plus None for stationary
 	/// </summary>
 	public enum Direction
 	{
+		/// <summary>
+		/// No direction (stationary)
+		/// </summary>
+		None,
 		/// <summary>
 		/// South
 		/// </summary>

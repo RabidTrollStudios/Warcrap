@@ -119,6 +119,12 @@ namespace GameManager.Graph
                 return path;
             }
 
+            // NOTE: We intentionally do NOT check start-node walkability here.
+            // Units may legitimately be on unwalkable cells (e.g., inside their
+            // own building after construction/training) and need to pathfind out.
+            // The expansion loop at line 175 handles this: only walkable neighbors
+            // are enqueued, so the path naturally exits the unwalkable area.
+
             // Add the first node to the priorityQueue
             nodesDict[startNodeNbr].cost = 0.0f;
             PriorityNode<Node<T>> currPNode = new PriorityNode<Node<T>>(nodesDict[startNodeNbr],
