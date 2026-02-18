@@ -1,27 +1,35 @@
 GetPathToUnit FAILED
-  from=(17, 11, 0) to=SOLDIER at (18, 16, 0)
-  mapSize=(73, 42, 1)
-  totalNeighbors=8 buildableNeighbors=0
+  from=(5, 8, 0) to=WORKER at (5, 20, 0)
+  mapSize=(30, 30, 0)
+  totalNeighbors=8 buildableNeighbors=8
 
 All neighbors:
-  (17, 17, 0) buildable=False
-  (17, 15, 0) buildable=False
-  (18, 17, 0) buildable=False
-  (18, 15, 0) buildable=False
-  (19, 17, 0) buildable=False
-  (19, 15, 0) buildable=False
-  (17, 16, 0) buildable=False
-  (19, 16, 0) buildable=False
+  (4, 21, 0) buildable=True
+  (4, 19, 0) buildable=True
+  (5, 21, 0) buildable=True
+  (5, 19, 0) buildable=True
+  (6, 21, 0) buildable=True
+  (6, 19, 0) buildable=True
+  (4, 20, 0) buildable=True
+  (6, 20, 0) buildable=True
 
 A* attempts (buildable neighbors only):
+  (5, 8, 0) -> (4, 21, 0): result=exhausted expansions=1
+  (5, 8, 0) -> (4, 19, 0): result=exhausted expansions=1
+  (5, 8, 0) -> (5, 21, 0): result=exhausted expansions=1
+  (5, 8, 0) -> (5, 19, 0): result=exhausted expansions=1
+  (5, 8, 0) -> (6, 21, 0): result=exhausted expansions=1
+  (5, 8, 0) -> (6, 19, 0): result=exhausted expansions=1
+  (5, 8, 0) -> (4, 20, 0): result=exhausted expansions=1
+  (5, 8, 0) -> (6, 20, 0): result=exhausted expansions=1
 
-Start cell (17, 11, 0) buildable=False
+Start cell (5, 8, 0) buildable=False
 Start cell neighbors:
-  (16, 10, 0) buildable=False
-  (16, 11, 0) buildable=False
-  (16, 12, 0) buildable=False
-  (17, 10, 0) buildable=False
-  (17, 12, 0) buildable=True
-  (18, 10, 0) buildable=False
-  (18, 11, 0) buildable=False
-  (18, 12, 0) buildable=False
+  (4, 7, 0) buildable=False
+  (4, 8, 0) buildable=False
+  (4, 9, 0) buildable=False
+  (5, 7, 0) buildable=False
+  (5, 9, 0) buildable=False
+  (6, 7, 0) buildable=False
+  (6, 8, 0) buildable=False
+  (6, 9, 0) buildable=False

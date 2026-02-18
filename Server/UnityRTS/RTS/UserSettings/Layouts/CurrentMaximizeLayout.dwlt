@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 747
+  controlID: 994
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 711
+  controlID: 958
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 688
+  controlID: 935
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -197,8 +197,8 @@ MonoBehaviour:
     y: 0
     width: 364
     height: 643
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -244,7 +244,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: b893fdfffa0cfeff300dfeffde40feff9abafeffd0bafeffb2ecfeff6666ffff9c66ffff5481ffff28fbffff
+      m_ExpandedIDs: ce97fbff0e13fcffb893fdfffa0cfeff300dfeffde40feff9abafeffd0bafeffb2ecfeff6666ffff9c66ffff5481ffff28fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -287,15 +287,15 @@ MonoBehaviour:
     y: 0
     width: 1043
     height: 643
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 8}
   - {fileID: 2}
   - {fileID: 9}
   m_Selected: 1
-  m_LastSelected: 0
+  m_LastSelected: 2
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -806,7 +806,7 @@ MonoBehaviour:
     m_SaveData: []
     m_OverlaysVisible: 1
   m_Spl:
-    ID: 786
+    ID: 1078
     splitterInitialOffset: 0
     currentActiveSplitter: -1
     realSizes:
@@ -829,7 +829,7 @@ MonoBehaviour:
     oldMinSizes: 
     oldMaxSizes: 
     oldSplitSize: 0
-  m_TestTypeToolbarIndex: 1
+  m_TestTypeToolbarIndex: 0
   m_PlayModeTestListGUI:
     m_Window: {fileID: 9}
     m_NewResultList:
@@ -837,7 +837,7 @@ MonoBehaviour:
       uniqueId: '[RTS][suite]'
       name: RTS
       fullName: RTS
-      resultStatus: 1
+      resultStatus: 0
       duration: 10.685332
       messages: 
       output: 
@@ -853,7 +853,7 @@ MonoBehaviour:
       uniqueId: '[GameManager.Tests.PlayMode.dll][suite]'
       name: GameManager.Tests.PlayMode.dll
       fullName: C:/Git/Warcrap/Server/UnityRTS/RTS/Library/ScriptAssemblies/GameManager.Tests.PlayMode.dll
-      resultStatus: 1
+      resultStatus: 0
       duration: 10.673416
       messages: 
       output: 
@@ -869,7 +869,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/[GameManager][suite]
       name: GameManager
       fullName: GameManager
-      resultStatus: 1
+      resultStatus: 0
       duration: 10.669049
       messages: 
       output: 
@@ -885,7 +885,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/[Tests][suite]
       name: Tests
       fullName: GameManager.Tests
-      resultStatus: 1
+      resultStatus: 0
       duration: 10.66618
       messages: 
       output: 
@@ -901,7 +901,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode][suite]
       name: PlayMode
       fullName: GameManager.Tests.PlayMode
-      resultStatus: 1
+      resultStatus: 0
       duration: 10.663594
       messages: 
       output: 
@@ -917,7 +917,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitBuildTests][suite]
       name: UnitBuildTests
       fullName: GameManager.Tests.PlayMode.UnitBuildTests
-      resultStatus: 1
+      resultStatus: 0
       duration: 1.327467
       messages: 
       output: 
@@ -933,7 +933,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitBuildTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitBuildTests.BuildBase_GoldDeductedAtStart]
       name: BuildBase_GoldDeductedAtStart
       fullName: GameManager.Tests.PlayMode.UnitBuildTests.BuildBase_GoldDeductedAtStart
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.1064147
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -955,7 +955,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitBuildTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitBuildTests.BuildingPlaced_FootprintCellsBecomeUnwalkable]
       name: BuildingPlaced_FootprintCellsBecomeUnwalkable
       fullName: GameManager.Tests.PlayMode.UnitBuildTests.BuildingPlaced_FootprintCellsBecomeUnwalkable
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0230733
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -977,7 +977,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitBuildTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitBuildTests.BuildNearMapEdge_FitsWithinBounds]
       name: BuildNearMapEdge_FitsWithinBounds
       fullName: GameManager.Tests.PlayMode.UnitBuildTests.BuildNearMapEdge_FitsWithinBounds
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.2749422
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -985,8 +985,7 @@ MonoBehaviour:
         <color=cyan>Creating:
         ./PlanningAgent_TestDLL.csv</color>
 
-        Animator is not playing an
-        AnimatorController
+        Animator is not playing an AnimatorController
 
 '
       stacktrace: 
@@ -1002,7 +1001,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitBuildTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitBuildTests.BuildOnOccupiedLocation_CommandRejectedGoldUnchanged]
       name: BuildOnOccupiedLocation_CommandRejectedGoldUnchanged
       fullName: GameManager.Tests.PlayMode.UnitBuildTests.BuildOnOccupiedLocation_CommandRejectedGoldUnchanged
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.024687
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1024,7 +1023,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitBuildTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitBuildTests.BuildWithInsufficientGold_CommandRejected]
       name: BuildWithInsufficientGold_CommandRejected
       fullName: GameManager.Tests.PlayMode.UnitBuildTests.BuildWithInsufficientGold_CommandRejected
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0245535
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1046,7 +1045,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitBuildTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitBuildTests.BuildWithNoPath_BuildingNotPlacedGoldUnchanged]
       name: BuildWithNoPath_BuildingNotPlacedGoldUnchanged
       fullName: GameManager.Tests.PlayMode.UnitBuildTests.BuildWithNoPath_BuildingNotPlacedGoldUnchanged
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0470984
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1054,8 +1053,8 @@ MonoBehaviour:
         <color=cyan>Creating:
         ./PlanningAgent_TestDLL.csv</color>
 
-        <color=cyan>PATH_DIAG: (5,
-        5, 0)->(19, 21, 0) failed: exhausted expansions=1</color>
+        <color=cyan>PATH_DIAG: (5, 5,
+        0)->(19, 21, 0) failed: exhausted expansions=1</color>
 
         <color=cyan>PATH_DIAG:
         (5, 5, 0)->(19, 17, 0) failed: exhausted expansions=1</color>
@@ -1119,7 +1118,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitBuildTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitBuildTests.WorkerAdjacentToBuildSite_BuildsQuickly]
       name: WorkerAdjacentToBuildSite_BuildsQuickly
       fullName: GameManager.Tests.PlayMode.UnitBuildTests.WorkerAdjacentToBuildSite_BuildsQuickly
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.2743728
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1127,8 +1126,7 @@ MonoBehaviour:
         <color=cyan>Creating:
         ./PlanningAgent_TestDLL.csv</color>
 
-        Animator is not playing an
-        AnimatorController
+        Animator is not playing an AnimatorController
 
 '
       stacktrace: 
@@ -1144,7 +1142,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitBuildTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitBuildTests.WorkerBuildsBase_IsBuiltTransitionsToTrue]
       name: WorkerBuildsBase_IsBuiltTransitionsToTrue
       fullName: GameManager.Tests.PlayMode.UnitBuildTests.WorkerBuildsBase_IsBuiltTransitionsToTrue
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.2660169
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1152,8 +1150,7 @@ MonoBehaviour:
         <color=cyan>Creating:
         ./PlanningAgent_TestDLL.csv</color>
 
-        Animator is not playing an
-        AnimatorController
+        Animator is not playing an AnimatorController
 
 '
       stacktrace: 
@@ -1169,7 +1166,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitBuildTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitBuildTests.WorkerBuildsBase_WorkerGoesIdleAfterCompletion]
       name: WorkerBuildsBase_WorkerGoesIdleAfterCompletion
       fullName: GameManager.Tests.PlayMode.UnitBuildTests.WorkerBuildsBase_WorkerGoesIdleAfterCompletion
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.2655754
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1177,8 +1174,7 @@ MonoBehaviour:
         <color=cyan>Creating:
         ./PlanningAgent_TestDLL.csv</color>
 
-        Animator is not playing an
-        AnimatorController
+        Animator is not playing an AnimatorController
 
 '
       stacktrace: 
@@ -1194,7 +1190,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitDestructionTests][suite]
       name: UnitDestructionTests
       fullName: GameManager.Tests.PlayMode.UnitDestructionTests
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.182563
       messages: 
       output: 
@@ -1210,7 +1206,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitDestructionTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitDestructionTests.Attacker_TargetDestroyedExternally_GoesIdleNoCrash]
       name: Attacker_TargetDestroyedExternally_GoesIdleNoCrash
       fullName: GameManager.Tests.PlayMode.UnitDestructionTests.Attacker_TargetDestroyedExternally_GoesIdleNoCrash
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0266497
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1232,7 +1228,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitDestructionTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitDestructionTests.Building_Destroyed_AllOccupiedCellsFreed]
       name: Building_Destroyed_AllOccupiedCellsFreed
       fullName: GameManager.Tests.PlayMode.UnitDestructionTests.Building_Destroyed_AllOccupiedCellsFreed
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0297714
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1254,7 +1250,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitDestructionTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitDestructionTests.DestroyLastUnitOfType_QueryReturnsEmpty]
       name: DestroyLastUnitOfType_QueryReturnsEmpty
       fullName: GameManager.Tests.PlayMode.UnitDestructionTests.DestroyLastUnitOfType_QueryReturnsEmpty
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0180029
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1276,7 +1272,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitDestructionTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitDestructionTests.ManyUnits_CreatedAndDestroyed_UnitManagerConsistent]
       name: ManyUnits_CreatedAndDestroyed_UnitManagerConsistent
       fullName: GameManager.Tests.PlayMode.UnitDestructionTests.ManyUnits_CreatedAndDestroyed_UnitManagerConsistent
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0246237
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1298,7 +1294,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitDestructionTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitDestructionTests.Unit_HealthExactlyZero_TriggersDestruction]
       name: Unit_HealthExactlyZero_TriggersDestruction
       fullName: GameManager.Tests.PlayMode.UnitDestructionTests.Unit_HealthExactlyZero_TriggersDestruction
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0244089
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1320,7 +1316,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitDestructionTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitDestructionTests.Unit_HealthLargeNegative_TriggersDestruction]
       name: Unit_HealthLargeNegative_TriggersDestruction
       fullName: GameManager.Tests.PlayMode.UnitDestructionTests.Unit_HealthLargeNegative_TriggersDestruction
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0179531
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1342,7 +1338,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitDestructionTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitDestructionTests.Unit_HealthZero_DestroyedAndRemovedFromUnitManager]
       name: Unit_HealthZero_DestroyedAndRemovedFromUnitManager
       fullName: GameManager.Tests.PlayMode.UnitDestructionTests.Unit_HealthZero_DestroyedAndRemovedFromUnitManager
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0163229
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1364,7 +1360,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitDestructionTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitDestructionTests.Worker_Destroyed_CellBecomesBuildable]
       name: Worker_Destroyed_CellBecomesBuildable
       fullName: GameManager.Tests.PlayMode.UnitDestructionTests.Worker_Destroyed_CellBecomesBuildable
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0184579
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1386,7 +1382,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitGatherTests][suite]
       name: UnitGatherTests
       fullName: GameManager.Tests.PlayMode.UnitGatherTests
-      resultStatus: 1
+      resultStatus: 0
       duration: 3.285272
       messages: 
       output: 
@@ -1402,7 +1398,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitGatherTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitGatherTests.Gather_BaseDestroyedMidTrip_WorkerGoesIdle]
       name: Gather_BaseDestroyedMidTrip_WorkerGoesIdle
       fullName: GameManager.Tests.PlayMode.UnitGatherTests.Gather_BaseDestroyedMidTrip_WorkerGoesIdle
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.1676196
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1424,7 +1420,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitGatherTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitGatherTests.Gather_MineCloseToBase_GoldStillDeposited]
       name: Gather_MineCloseToBase_GoldStillDeposited
       fullName: GameManager.Tests.PlayMode.UnitGatherTests.Gather_MineCloseToBase_GoldStillDeposited
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.2574818
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1446,7 +1442,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitGatherTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitGatherTests.Gather_MineDestroyedMidTrip_WorkerGoesIdle]
       name: Gather_MineDestroyedMidTrip_WorkerGoesIdle
       fullName: GameManager.Tests.PlayMode.UnitGatherTests.Gather_MineDestroyedMidTrip_WorkerGoesIdle
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.1356289
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1468,7 +1464,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitGatherTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitGatherTests.Gather_MineFarFromBase_GatherCompletesEventually]
       name: Gather_MineFarFromBase_GatherCompletesEventually
       fullName: GameManager.Tests.PlayMode.UnitGatherTests.Gather_MineFarFromBase_GatherCompletesEventually
-      resultStatus: 1
+      resultStatus: 0
       duration: 1.0393221
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1490,7 +1486,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitGatherTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitGatherTests.Gather_MineHealthDecreases_DuringMining]
       name: Gather_MineHealthDecreases_DuringMining
       fullName: GameManager.Tests.PlayMode.UnitGatherTests.Gather_MineHealthDecreases_DuringMining
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0447934
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1512,7 +1508,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitGatherTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitGatherTests.Gather_MineLowHealth_WorkerGoesIdleAfterDepletion]
       name: Gather_MineLowHealth_WorkerGoesIdleAfterDepletion
       fullName: GameManager.Tests.PlayMode.UnitGatherTests.Gather_MineLowHealth_WorkerGoesIdleAfterDepletion
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.1958924
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1534,7 +1530,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitGatherTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitGatherTests.Gather_MultipleWorkersSameMine_AllDepositGold]
       name: Gather_MultipleWorkersSameMine_AllDepositGold
       fullName: GameManager.Tests.PlayMode.UnitGatherTests.Gather_MultipleWorkersSameMine_AllDepositGold
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.5586731
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1556,7 +1552,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitGatherTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitGatherTests.Gather_WorkerCompletesRoundTrip_AgentGoldIncreases]
       name: Gather_WorkerCompletesRoundTrip_AgentGoldIncreases
       fullName: GameManager.Tests.PlayMode.UnitGatherTests.Gather_WorkerCompletesRoundTrip_AgentGoldIncreases
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.4380695
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1578,7 +1574,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitGatherTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitGatherTests.Gather_WorkerContinuesAfterFirstDeposit_StillGathering]
       name: Gather_WorkerContinuesAfterFirstDeposit_StillGathering
       fullName: GameManager.Tests.PlayMode.UnitGatherTests.Gather_WorkerContinuesAfterFirstDeposit_StillGathering
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.4415938
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1600,7 +1596,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitMovementTests][suite]
       name: UnitMovementTests
       fullName: GameManager.Tests.PlayMode.UnitMovementTests
-      resultStatus: 1
+      resultStatus: 0
       duration: 2.1782525
       messages: 
       output: 
@@ -1616,7 +1612,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitMovementTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitMovementTests.MultipleWorkers_MovingSimultaneously_AllResolve]
       name: MultipleWorkers_MovingSimultaneously_AllResolve
       fullName: GameManager.Tests.PlayMode.UnitMovementTests.MultipleWorkers_MovingSimultaneously_AllResolve
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.4950734
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1638,7 +1634,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitMovementTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitMovementTests.Worker_AtMapEdge_MovesToInteriorTarget]
       name: Worker_AtMapEdge_MovesToInteriorTarget
       fullName: GameManager.Tests.PlayMode.UnitMovementTests.Worker_AtMapEdge_MovesToInteriorTarget
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.2994839
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1660,7 +1656,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitMovementTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitMovementTests.Worker_MoveCommand_ArrivesAtDestinationAndGoesIdle]
       name: Worker_MoveCommand_ArrivesAtDestinationAndGoesIdle
       fullName: GameManager.Tests.PlayMode.UnitMovementTests.Worker_MoveCommand_ArrivesAtDestinationAndGoesIdle
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.1005218
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1682,7 +1678,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitMovementTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitMovementTests.Worker_Movement_OriginalCellFreedAfterMove]
       name: Worker_Movement_OriginalCellFreedAfterMove
       fullName: GameManager.Tests.PlayMode.UnitMovementTests.Worker_Movement_OriginalCellFreedAfterMove
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0793453
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1704,7 +1700,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitMovementTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitMovementTests.Worker_MovesToNearMapCorner_ArrivesSuccessfully]
       name: Worker_MovesToNearMapCorner_ArrivesSuccessfully
       fullName: GameManager.Tests.PlayMode.UnitMovementTests.Worker_MovesToNearMapCorner_ArrivesSuccessfully
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.2384646
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1726,7 +1722,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitMovementTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitMovementTests.Worker_MoveToSamePosition_StaysIdle]
       name: Worker_MoveToSamePosition_StaysIdle
       fullName: GameManager.Tests.PlayMode.UnitMovementTests.Worker_MoveToSamePosition_StaysIdle
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0347215
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1748,7 +1744,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitMovementTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitMovementTests.Worker_MultiStepPath_ReachesFinalTarget]
       name: Worker_MultiStepPath_ReachesFinalTarget
       fullName: GameManager.Tests.PlayMode.UnitMovementTests.Worker_MultiStepPath_ReachesFinalTarget
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.3648425
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1770,7 +1766,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitMovementTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitMovementTests.Worker_OnUnwalkableStart_PathfindsOut]
       name: Worker_OnUnwalkableStart_PathfindsOut
       fullName: GameManager.Tests.PlayMode.UnitMovementTests.Worker_OnUnwalkableStart_PathfindsOut
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.1595619
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1792,7 +1788,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitMovementTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitMovementTests.Worker_PathBlockedMidTraversal_RepathsOrGoesIdle]
       name: Worker_PathBlockedMidTraversal_RepathsOrGoesIdle
       fullName: GameManager.Tests.PlayMode.UnitMovementTests.Worker_PathBlockedMidTraversal_RepathsOrGoesIdle
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0859549
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1800,8 +1796,8 @@ MonoBehaviour:
         <color=cyan>Creating:
         ./PlanningAgent_TestDLL.csv</color>
 
-        <color=cyan>PATH_DIAG: (5,
-        8, 0)->(4, 21, 0) failed: exhausted expansions=1</color>
+        <color=cyan>PATH_DIAG: (5, 8,
+        0)->(4, 21, 0) failed: exhausted expansions=1</color>
 
         <color=cyan>PATH_DIAG:
         (5, 8, 0)->(4, 19, 0) failed: exhausted expansions=1</color>
@@ -1841,7 +1837,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitMovementTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitMovementTests.Worker_SurroundedByUnwalkable_GoesIdle]
       name: Worker_SurroundedByUnwalkable_GoesIdle
       fullName: GameManager.Tests.PlayMode.UnitMovementTests.Worker_SurroundedByUnwalkable_GoesIdle
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.3137965
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1863,7 +1859,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitTrainingTests][suite]
       name: UnitTrainingTests
       fullName: GameManager.Tests.PlayMode.UnitTrainingTests
-      resultStatus: 1
+      resultStatus: 0
       duration: 3.684781
       messages: 
       output: 
@@ -1879,7 +1875,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitTrainingTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitTrainingTests.BaseTrainsWorker_ActionIsTrainThenIdle]
       name: BaseTrainsWorker_ActionIsTrainThenIdle
       fullName: GameManager.Tests.PlayMode.UnitTrainingTests.BaseTrainsWorker_ActionIsTrainThenIdle
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0725712
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1901,7 +1897,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitTrainingTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitTrainingTests.BaseTrainsWorker_NewWorkerAppearsAfterCreationTime]
       name: BaseTrainsWorker_NewWorkerAppearsAfterCreationTime
       fullName: GameManager.Tests.PlayMode.UnitTrainingTests.BaseTrainsWorker_NewWorkerAppearsAfterCreationTime
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0647717
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1923,7 +1919,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitTrainingTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitTrainingTests.TrainAtMaxSpeed_CompletesNearlyInstantly]
       name: TrainAtMaxSpeed_CompletesNearlyInstantly
       fullName: GameManager.Tests.PlayMode.UnitTrainingTests.TrainAtMaxSpeed_CompletesNearlyInstantly
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0498474
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1945,7 +1941,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitTrainingTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitTrainingTests.TrainedWorker_HasCorrectTypeAndOccupiesCell]
       name: TrainedWorker_HasCorrectTypeAndOccupiesCell
       fullName: GameManager.Tests.PlayMode.UnitTrainingTests.TrainedWorker_HasCorrectTypeAndOccupiesCell
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0699309
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1967,7 +1963,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitTrainingTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitTrainingTests.TrainedWorker_SpawnsOutsideBuildingFootprint]
       name: TrainedWorker_SpawnsOutsideBuildingFootprint
       fullName: GameManager.Tests.PlayMode.UnitTrainingTests.TrainedWorker_SpawnsOutsideBuildingFootprint
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0771821
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -1989,7 +1985,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitTrainingTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitTrainingTests.TrainFiveWorkersSequentially_AllExistOnDistinctCells]
       name: TrainFiveWorkersSequentially_AllExistOnDistinctCells
       fullName: GameManager.Tests.PlayMode.UnitTrainingTests.TrainFiveWorkersSequentially_AllExistOnDistinctCells
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.2689855
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -2011,7 +2007,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitTrainingTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitTrainingTests.TrainInvalidUnitType_CommandRejectedGoldUnchanged]
       name: TrainInvalidUnitType_CommandRejectedGoldUnchanged
       fullName: GameManager.Tests.PlayMode.UnitTrainingTests.TrainInvalidUnitType_CommandRejectedGoldUnchanged
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0199346
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -2033,7 +2029,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitTrainingTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitTrainingTests.TrainWhileAlreadyTraining_SecondCommandRejected]
       name: TrainWhileAlreadyTraining_SecondCommandRejected
       fullName: GameManager.Tests.PlayMode.UnitTrainingTests.TrainWhileAlreadyTraining_SecondCommandRejected
-      resultStatus: 1
+      resultStatus: 0
       duration: 0.0181974
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -2055,7 +2051,7 @@ MonoBehaviour:
       uniqueId: GameManager.Tests.PlayMode.dll/GameManager/Tests/PlayMode/UnitTrainingTests/[GameManager.Tests.PlayMode][GameManager.Tests.PlayMode.UnitTrainingTests.TrainWithAllNeighborsOccupied_StaysInTrain]
       name: TrainWithAllNeighborsOccupied_StaysInTrain
       fullName: GameManager.Tests.PlayMode.UnitTrainingTests.TrainWithAllNeighborsOccupied_StaysInTrain
-      resultStatus: 1
+      resultStatus: 0
       duration: 3.0364506
       messages: 
       output: '<color=cyan>Creating: ./PlanningAgent_TestDLL.csv</color>
@@ -2121,7 +2117,7 @@ MonoBehaviour:
       name: RTS
       fullName: RTS
       resultStatus: 1
-      duration: 0.1752706
+      duration: 0.3106523
       messages: 
       output: 
       stacktrace: 
@@ -2137,7 +2133,7 @@ MonoBehaviour:
       name: GameManager.Tests.EditMode.dll
       fullName: C:/Git/Warcrap/Server/UnityRTS/RTS/Library/ScriptAssemblies/GameManager.Tests.EditMode.dll
       resultStatus: 1
-      duration: 0.1534465
+      duration: 0.2739413
       messages: 
       output: 
       stacktrace: 
@@ -2153,7 +2149,7 @@ MonoBehaviour:
       name: GameManager
       fullName: GameManager
       resultStatus: 1
-      duration: 0.1522739
+      duration: 0.2725861
       messages: 
       output: 
       stacktrace: 
@@ -2169,7 +2165,7 @@ MonoBehaviour:
       name: Tests
       fullName: GameManager.Tests.AssemblySetup
       resultStatus: 1
-      duration: 0.1481942
+      duration: 0.2711678
       messages: 
       output: 
       stacktrace: 
@@ -2185,7 +2181,7 @@ MonoBehaviour:
       name: AStarSearchTests
       fullName: GameManager.Tests.AStarSearchTests
       resultStatus: 1
-      duration: 0.0689235
+      duration: 0.1018142
       messages: 
       output: 
       stacktrace: 
@@ -2201,7 +2197,7 @@ MonoBehaviour:
       name: AdjacentNodes_ReturnsOneStep
       fullName: GameManager.Tests.AStarSearchTests.AdjacentNodes_ReturnsOneStep
       resultStatus: 1
-      duration: 0.0056455
+      duration: 0.0187425
       messages: 
       output: 
       stacktrace: 
@@ -2218,7 +2214,7 @@ MonoBehaviour:
       name: DefaultCap_FindsPath
       fullName: GameManager.Tests.AStarSearchTests.DefaultCap_FindsPath
       resultStatus: 1
-      duration: 0.0008167
+      duration: 0.003935
       messages: 
       output: 
       stacktrace: 
@@ -2235,7 +2231,7 @@ MonoBehaviour:
       name: DiagonalPath_ReturnsOneStep
       fullName: GameManager.Tests.AStarSearchTests.DiagonalPath_ReturnsOneStep
       resultStatus: 1
-      duration: 0.0003786
+      duration: 0.0005078
       messages: 
       output: 
       stacktrace: 
@@ -2252,7 +2248,7 @@ MonoBehaviour:
       name: EndNodeBlocked_ReturnsEmpty
       fullName: GameManager.Tests.AStarSearchTests.EndNodeBlocked_ReturnsEmpty
       resultStatus: 1
-      duration: 0.0003392
+      duration: 0.0005365
       messages: 
       output: 
       stacktrace: 
@@ -2269,7 +2265,7 @@ MonoBehaviour:
       name: ExpansionCap_ReturnsCap
       fullName: GameManager.Tests.AStarSearchTests.ExpansionCap_ReturnsCap
       resultStatus: 1
-      duration: 0.0005214
+      duration: 0.0007469
       messages: 
       output: 
       stacktrace: 
@@ -2286,7 +2282,7 @@ MonoBehaviour:
       name: FindClosestNeighbor_NoEdges_ReturnsMinusOne
       fullName: GameManager.Tests.AStarSearchTests.FindClosestNeighbor_NoEdges_ReturnsMinusOne
       resultStatus: 1
-      duration: 0.0004172
+      duration: 0.0004857
       messages: 
       output: 
       stacktrace: 
@@ -2303,7 +2299,7 @@ MonoBehaviour:
       name: FindClosestNeighbor_ReturnsNearest
       fullName: GameManager.Tests.AStarSearchTests.FindClosestNeighbor_ReturnsNearest
       resultStatus: 1
-      duration: 0.0002781
+      duration: 0.0003201
       messages: 
       output: 
       stacktrace: 
@@ -2320,7 +2316,7 @@ MonoBehaviour:
       name: FullyEnclosed_ReturnsExhausted
       fullName: GameManager.Tests.AStarSearchTests.FullyEnclosed_ReturnsExhausted
       resultStatus: 1
-      duration: 0.000435
+      duration: 0.0004595
       messages: 
       output: 
       stacktrace: 
@@ -2337,7 +2333,7 @@ MonoBehaviour:
       name: LargeGrid_100x100_CompletesQuickly
       fullName: GameManager.Tests.AStarSearchTests.LargeGrid_100x100_CompletesQuickly
       resultStatus: 1
-      duration: 0.0495504
+      duration: 0.0476851
       messages: 
       output: 
       stacktrace: 
@@ -2354,7 +2350,7 @@ MonoBehaviour:
       name: LongerPath_CorrectLength
       fullName: GameManager.Tests.AStarSearchTests.LongerPath_CorrectLength
       resultStatus: 1
-      duration: 0.0003983
+      duration: 0.0003807
       messages: 
       output: 
       stacktrace: 
@@ -2371,7 +2367,7 @@ MonoBehaviour:
       name: PathDoesNotIncludeStart
       fullName: GameManager.Tests.AStarSearchTests.PathDoesNotIncludeStart
       resultStatus: 1
-      duration: 0.0004156
+      duration: 0.0021591
       messages: 
       output: 
       stacktrace: 
@@ -2388,7 +2384,7 @@ MonoBehaviour:
       name: PathEndsAtTarget
       fullName: GameManager.Tests.AStarSearchTests.PathEndsAtTarget
       resultStatus: 1
-      duration: 0.0003183
+      duration: 0.0003828
       messages: 
       output: 
       stacktrace: 
@@ -2405,7 +2401,7 @@ MonoBehaviour:
       name: PathIsContiguous
       fullName: GameManager.Tests.AStarSearchTests.PathIsContiguous
       resultStatus: 1
-      duration: 0.0007441
+      duration: 0.0010431
       messages: 
       output: 
       stacktrace: 
@@ -2422,7 +2418,7 @@ MonoBehaviour:
       name: ResetSearch_ClearsAllNodes
       fullName: GameManager.Tests.AStarSearchTests.ResetSearch_ClearsAllNodes
       resultStatus: 1
-      duration: 0.0012058
+      duration: 0.0013374
       messages: 
       output: 
       stacktrace: 
@@ -2439,7 +2435,7 @@ MonoBehaviour:
       name: RunTwice_SecondSearchValid
       fullName: GameManager.Tests.AStarSearchTests.RunTwice_SecondSearchValid
       resultStatus: 1
-      duration: 0.0003637
+      duration: 0.0003489
       messages: 
       output: 
       stacktrace: 
@@ -2456,7 +2452,7 @@ MonoBehaviour:
       name: SameNode_ReturnsEmpty_SameNode
       fullName: GameManager.Tests.AStarSearchTests.SameNode_ReturnsEmpty_SameNode
       resultStatus: 1
-      duration: 0.0002832
+      duration: 0.0003019
       messages: 
       output: 
       stacktrace: 
@@ -2473,7 +2469,7 @@ MonoBehaviour:
       name: StartBlocked_StillFindsPathThroughWalkableNeighbors
       fullName: GameManager.Tests.AStarSearchTests.StartBlocked_StillFindsPathThroughWalkableNeighbors
       resultStatus: 1
-      duration: 0.0003707
+      duration: 0.0004142
       messages: 
       output: 
       stacktrace: 
@@ -2490,7 +2486,7 @@ MonoBehaviour:
       name: WallChannel_PathGoesAround
       fullName: GameManager.Tests.AStarSearchTests.WallChannel_PathGoesAround
       resultStatus: 1
-      duration: 0.0005266
+      duration: 0.000878
       messages: 
       output: 
       stacktrace: 
@@ -2507,7 +2503,7 @@ MonoBehaviour:
       name: ConstantsTests
       fullName: GameManager.Tests.ConstantsTests
       resultStatus: 1
-      duration: 0.0093903
+      duration: 0.0250663
       messages: 
       output: 
       stacktrace: 
@@ -2523,7 +2519,7 @@ MonoBehaviour:
       name: CostDelegatedFromSDK
       fullName: GameManager.Tests.ConstantsTests.CostDelegatedFromSDK
       resultStatus: 1
-      duration: 0.0009587
+      duration: 0.0145787
       messages: 
       output: 
       stacktrace: 
@@ -2540,7 +2536,7 @@ MonoBehaviour:
       name: HealthMine_MatchesStartingGold
       fullName: GameManager.Tests.ConstantsTests.HealthMine_MatchesStartingGold
       resultStatus: 1
-      duration: 0.0002597
+      duration: 0.0004622
       messages: 
       output: 
       stacktrace: 
@@ -2557,7 +2553,7 @@ MonoBehaviour:
       name: ImmobileUnits_ZeroSpeed
       fullName: GameManager.Tests.ConstantsTests.ImmobileUnits_ZeroSpeed
       resultStatus: 1
-      duration: 0.000716
+      duration: 0.0011078
       messages: 
       output: 
       stacktrace: 
@@ -2574,7 +2570,7 @@ MonoBehaviour:
       name: MaxSpeed_CreationTimeInverse
       fullName: GameManager.Tests.ConstantsTests.MaxSpeed_CreationTimeInverse
       resultStatus: 1
-      duration: 0.0002303
+      duration: 0.0003635
       messages: 
       output: 
       stacktrace: 
@@ -2591,7 +2587,7 @@ MonoBehaviour:
       name: NonCombatants_ZeroDamage
       fullName: GameManager.Tests.ConstantsTests.NonCombatants_ZeroDamage
       resultStatus: 1
-      duration: 0.0002628
+      duration: 0.0002566
       messages: 
       output: 
       stacktrace: 
@@ -2608,7 +2604,7 @@ MonoBehaviour:
       name: Speed1_SoldierDamage
       fullName: GameManager.Tests.ConstantsTests.Speed1_SoldierDamage
       resultStatus: 1
-      duration: 0.000208
+      duration: 0.0001564
       messages: 
       output: 
       stacktrace: 
@@ -2625,7 +2621,7 @@ MonoBehaviour:
       name: Speed1_WorkerMovingSpeed
       fullName: GameManager.Tests.ConstantsTests.Speed1_WorkerMovingSpeed
       resultStatus: 1
-      duration: 0.0001956
+      duration: 0.0001574
       messages: 
       output: 
       stacktrace: 
@@ -2642,7 +2638,7 @@ MonoBehaviour:
       name: Speed3_SoldierDamageScales
       fullName: GameManager.Tests.ConstantsTests.Speed3_SoldierDamageScales
       resultStatus: 1
-      duration: 0.0002025
+      duration: 0.0001637
       messages: 
       output: 
       stacktrace: 
@@ -2659,7 +2655,7 @@ MonoBehaviour:
       name: Speed5_WorkerMovingSpeedScales
       fullName: GameManager.Tests.ConstantsTests.Speed5_WorkerMovingSpeedScales
       resultStatus: 1
-      duration: 0.0002031
+      duration: 0.0001721
       messages: 
       output: 
       stacktrace: 
@@ -2676,7 +2672,7 @@ MonoBehaviour:
       name: SpeedZero_CreationTimeIsExplicitInfinity
       fullName: GameManager.Tests.ConstantsTests.SpeedZero_CreationTimeIsExplicitInfinity
       resultStatus: 1
-      duration: 0.0002159
+      duration: 0.0002498
       messages: 
       output: 
       stacktrace: 
@@ -2693,7 +2689,7 @@ MonoBehaviour:
       name: GridCellTests
       fullName: GameManager.Tests.GridCellTests
       resultStatus: 1
-      duration: 0.0086591
+      duration: 0.0733858
       messages: 
       output: 
       stacktrace: 
@@ -2709,7 +2705,7 @@ MonoBehaviour:
       name: Constructor_DefaultsBothTrue
       fullName: GameManager.Tests.GridCellTests.Constructor_DefaultsBothTrue
       resultStatus: 1
-      duration: 0.0010321
+      duration: 0.0021167
       messages: 
       output: 
       stacktrace: 
@@ -2726,7 +2722,7 @@ MonoBehaviour:
       name: Constructor_ZeroPosition_Works
       fullName: GameManager.Tests.GridCellTests.Constructor_ZeroPosition_Works
       resultStatus: 1
-      duration: 0.0005656
+      duration: 0.0014853
       messages: 
       output: 
       stacktrace: 
@@ -2743,7 +2739,7 @@ MonoBehaviour:
       name: GetPosition_ReturnsConstructorPosition
       fullName: GameManager.Tests.GridCellTests.GetPosition_ReturnsConstructorPosition
       resultStatus: 1
-      duration: 0.0003485
+      duration: 0.0002866
       messages: 
       output: 
       stacktrace: 
@@ -2760,7 +2756,7 @@ MonoBehaviour:
       name: IndependentState_NoCrossAffect
       fullName: GameManager.Tests.GridCellTests.IndependentState_NoCrossAffect
       resultStatus: 1
-      duration: 0.0003774
+      duration: 0.0004501
       messages: 
       output: 
       stacktrace: 
@@ -2777,7 +2773,7 @@ MonoBehaviour:
       name: SetBuildable_Toggle_RestoresState
       fullName: GameManager.Tests.GridCellTests.SetBuildable_Toggle_RestoresState
       resultStatus: 1
-      duration: 0.0003028
+      duration: 0.0002551
       messages: 
       output: 
       stacktrace: 
@@ -2794,7 +2790,7 @@ MonoBehaviour:
       name: SetBuildableFalse_WalkableUnchanged
       fullName: GameManager.Tests.GridCellTests.SetBuildableFalse_WalkableUnchanged
       resultStatus: 1
-      duration: 0.0002853
+      duration: 0.0002544
       messages: 
       output: 
       stacktrace: 
@@ -2811,7 +2807,7 @@ MonoBehaviour:
       name: SetWalkable_Toggle_RestoresState
       fullName: GameManager.Tests.GridCellTests.SetWalkable_Toggle_RestoresState
       resultStatus: 1
-      duration: 0.0002976
+      duration: 0.0002244
       messages: 
       output: 
       stacktrace: 
@@ -2828,7 +2824,7 @@ MonoBehaviour:
       name: SetWalkableFalse_BuildableUnchanged
       fullName: GameManager.Tests.GridCellTests.SetWalkableFalse_BuildableUnchanged
       resultStatus: 1
-      duration: 0.000281
+      duration: 0.0003145
       messages: 
       output: 
       stacktrace: 
@@ -2845,7 +2841,7 @@ MonoBehaviour:
       name: MapManagerTests
       fullName: GameManager.Tests.MapManagerTests
       resultStatus: 1
-      duration: 0.0185918
+      duration: 0.0233529
       messages: 
       output: 
       stacktrace: 
@@ -2861,7 +2857,7 @@ MonoBehaviour:
       name: GetGridPositionsNearUnit_Worker_Returns8
       fullName: GameManager.Tests.MapManagerTests.GetGridPositionsNearUnit_Worker_Returns8
       resultStatus: 1
-      duration: 0.0016833
+      duration: 0.0044726
       messages: 
       output: 
       stacktrace: 
@@ -2878,7 +2874,7 @@ MonoBehaviour:
       name: GetPathBetweenGridPositions_FindsPath
       fullName: GameManager.Tests.MapManagerTests.GetPathBetweenGridPositions_FindsPath
       resultStatus: 1
-      duration: 0.0008958
+      duration: 0.001512
       messages: 
       output: 
       stacktrace: 
@@ -2895,7 +2891,7 @@ MonoBehaviour:
       name: IsAreaBuildable_AtMapEdge_Works
       fullName: GameManager.Tests.MapManagerTests.IsAreaBuildable_AtMapEdge_Works
       resultStatus: 1
-      duration: 0.000768
+      duration: 0.0010186
       messages: 
       output: 
       stacktrace: 
@@ -2912,7 +2908,7 @@ MonoBehaviour:
       name: IsAreaBuildable_Base3x3_FullyOpen_True
       fullName: GameManager.Tests.MapManagerTests.IsAreaBuildable_Base3x3_FullyOpen_True
       resultStatus: 1
-      duration: 0.0007073
+      duration: 0.0006293
       messages: 
       output: 
       stacktrace: 
@@ -2929,7 +2925,7 @@ MonoBehaviour:
       name: IsAreaBuildable_Base3x3_PartiallyBlocked_False
       fullName: GameManager.Tests.MapManagerTests.IsAreaBuildable_Base3x3_PartiallyBlocked_False
       resultStatus: 1
-      duration: 0.0012277
+      duration: 0.0011411
       messages: 
       output: 
       stacktrace: 
@@ -2946,7 +2942,7 @@ MonoBehaviour:
       name: IsAreaBuildable_BaseOverlapsEdge_False
       fullName: GameManager.Tests.MapManagerTests.IsAreaBuildable_BaseOverlapsEdge_False
       resultStatus: 1
-      duration: 0.0007114
+      duration: 0.00062
       messages: 
       output: 
       stacktrace: 
@@ -2963,7 +2959,7 @@ MonoBehaviour:
       name: IsAreaBuildable_OffMap_ReturnsFalse
       fullName: GameManager.Tests.MapManagerTests.IsAreaBuildable_OffMap_ReturnsFalse
       resultStatus: 1
-      duration: 0.0006872
+      duration: 0.0006579
       messages: 
       output: 
       stacktrace: 
@@ -2980,7 +2976,7 @@ MonoBehaviour:
       name: IsAreaBuildable_WorkerOnBlocked_False
       fullName: GameManager.Tests.MapManagerTests.IsAreaBuildable_WorkerOnBlocked_False
       resultStatus: 1
-      duration: 0.0011893
+      duration: 0.0016053
       messages: 
       output: 
       stacktrace: 
@@ -2997,7 +2993,7 @@ MonoBehaviour:
       name: IsAreaBuildable_WorkerOnOpen_True
       fullName: GameManager.Tests.MapManagerTests.IsAreaBuildable_WorkerOnOpen_True
       resultStatus: 1
-      duration: 0.0006757
+      duration: 0.0006641
       messages: 
       output: 
       stacktrace: 
@@ -3014,7 +3010,7 @@ MonoBehaviour:
       name: IsBoundedAreaBuildable_AdjacentWall_False
       fullName: GameManager.Tests.MapManagerTests.IsBoundedAreaBuildable_AdjacentWall_False
       resultStatus: 1
-      duration: 0.001425
+      duration: 0.0013665
       messages: 
       output: 
       stacktrace: 
@@ -3031,7 +3027,7 @@ MonoBehaviour:
       name: IsBoundedAreaBuildable_Open_True
       fullName: GameManager.Tests.MapManagerTests.IsBoundedAreaBuildable_Open_True
       resultStatus: 1
-      duration: 0.0007011
+      duration: 0.0006318
       messages: 
       output: 
       stacktrace: 
@@ -3048,7 +3044,7 @@ MonoBehaviour:
       name: SetAreaBuildability_Building_WalkableFalse
       fullName: GameManager.Tests.MapManagerTests.SetAreaBuildability_Building_WalkableFalse
       resultStatus: 1
-      duration: 0.0007306
+      duration: 0.001289
       messages: 
       output: 
       stacktrace: 
@@ -3065,7 +3061,7 @@ MonoBehaviour:
       name: SetAreaBuildability_MobileUnit_WalkableStaysTrue
       fullName: GameManager.Tests.MapManagerTests.SetAreaBuildability_MobileUnit_WalkableStaysTrue
       resultStatus: 1
-      duration: 0.0007069
+      duration: 0.0006783
       messages: 
       output: 
       stacktrace: 
@@ -3082,7 +3078,7 @@ MonoBehaviour:
       name: SetAreaBuildability_Restore_BothTrue
       fullName: GameManager.Tests.MapManagerTests.SetAreaBuildability_Restore_BothTrue
       resultStatus: 1
-      duration: 0.000716
+      duration: 0.0006868
       messages: 
       output: 
       stacktrace: 
@@ -3099,7 +3095,7 @@ MonoBehaviour:
       name: PriorityQueueTests
       fullName: GameManager.Tests.PriorityQueueTests
       resultStatus: 1
-      duration: 0.023076
+      duration: 0.0189717
       messages: 
       output: 
       stacktrace: 
@@ -3115,7 +3111,7 @@ MonoBehaviour:
       name: ChangePriority_Decrease_MovesToFront
       fullName: GameManager.Tests.PriorityQueueTests.ChangePriority_Decrease_MovesToFront
       resultStatus: 1
-      duration: 0.0015024
+      duration: 0.0012036
       messages: 
       output: 
       stacktrace: 
@@ -3132,7 +3128,7 @@ MonoBehaviour:
       name: ChangePriority_Increase_MovesToBack
       fullName: GameManager.Tests.PriorityQueueTests.ChangePriority_Increase_MovesToBack
       resultStatus: 1
-      duration: 0.0003608
+      duration: 0.0002526
       messages: 
       output: 
       stacktrace: 
@@ -3149,7 +3145,7 @@ MonoBehaviour:
       name: ChangePriority_NeverEnqueued_NoEffect
       fullName: GameManager.Tests.PriorityQueueTests.ChangePriority_NeverEnqueued_NoEffect
       resultStatus: 1
-      duration: 0.0007826
+      duration: 0.0007145
       messages: 
       output: 
       stacktrace: 
@@ -3166,7 +3162,7 @@ MonoBehaviour:
       name: Clear_ResetsCount
       fullName: GameManager.Tests.PriorityQueueTests.Clear_ResetsCount
       resultStatus: 1
-      duration: 0.0002995
+      duration: 0.0002553
       messages: 
       output: 
       stacktrace: 
@@ -3183,7 +3179,7 @@ MonoBehaviour:
       name: Dequeue_AfterClear_ThrowsException
       fullName: GameManager.Tests.PriorityQueueTests.Dequeue_AfterClear_ThrowsException
       resultStatus: 1
-      duration: 0.00092
+      duration: 0.0010286
       messages: 
       output: 
       stacktrace: 
@@ -3200,7 +3196,7 @@ MonoBehaviour:
       name: Dequeue_EmptyQueue_ThrowsException
       fullName: GameManager.Tests.PriorityQueueTests.Dequeue_EmptyQueue_ThrowsException
       resultStatus: 1
-      duration: 0.000246
+      duration: 0.0002731
       messages: 
       output: 
       stacktrace: 
@@ -3217,7 +3213,7 @@ MonoBehaviour:
       name: Dequeue_MultipleItems_ReturnedInPriorityOrder
       fullName: GameManager.Tests.PriorityQueueTests.Dequeue_MultipleItems_ReturnedInPriorityOrder
       resultStatus: 1
-      duration: 0.0003391
+      duration: 0.000212
       messages: 
       output: 
       stacktrace: 
@@ -3234,7 +3230,7 @@ MonoBehaviour:
       name: Dequeue_SingleItem_ReturnsIt
       fullName: GameManager.Tests.PriorityQueueTests.Dequeue_SingleItem_ReturnsIt
       resultStatus: 1
-      duration: 0.0002145
+      duration: 0.0002181
       messages: 
       output: 
       stacktrace: 
@@ -3251,7 +3247,7 @@ MonoBehaviour:
       name: Enqueue_DuplicatePriorities_AllItemsReturned
       fullName: GameManager.Tests.PriorityQueueTests.Enqueue_DuplicatePriorities_AllItemsReturned
       resultStatus: 1
-      duration: 0.0002986
+      duration: 0.0002702
       messages: 
       output: 
       stacktrace: 
@@ -3268,7 +3264,7 @@ MonoBehaviour:
       name: Enqueue_SingleItem_CountIsOne
       fullName: GameManager.Tests.PriorityQueueTests.Enqueue_SingleItem_CountIsOne
       resultStatus: 1
-      duration: 0.0001861
+      duration: 0.0001915
       messages: 
       output: 
       stacktrace: 
@@ -3285,7 +3281,7 @@ MonoBehaviour:
       name: Stress_InterleavedEnqueueDequeue_Ordering
       fullName: GameManager.Tests.PriorityQueueTests.Stress_InterleavedEnqueueDequeue_Ordering
       resultStatus: 1
-      duration: 0.002629
+      duration: 0.0027891
       messages: 
       output: 
       stacktrace: 
@@ -3302,7 +3298,7 @@ MonoBehaviour:
       name: Stress_ThousandElements_HeapOrdering
       fullName: GameManager.Tests.PriorityQueueTests.Stress_ThousandElements_HeapOrdering
       resultStatus: 1
-      duration: 0.0090219
+      duration: 0.0059087
       messages: 
       output: 
       stacktrace: 
@@ -3319,7 +3315,7 @@ MonoBehaviour:
       name: UtilityTests
       fullName: GameManager.Tests.UtilityTests
       resultStatus: 1
-      duration: 0.0131953
+      duration: 0.0168666
       messages: 
       output: 
       stacktrace: 
@@ -3335,7 +3331,7 @@ MonoBehaviour:
       name: ConvertDirection_AllEight_Correct
       fullName: GameManager.Tests.UtilityTests.ConvertDirection_AllEight_Correct
       resultStatus: 1
-      duration: 0.000817
+      duration: 0.0008573
       messages: 
       output: 
       stacktrace: 
@@ -3352,7 +3348,7 @@ MonoBehaviour:
       name: ConvertDirection_LargeDelta_ClampsCorrectly
       fullName: GameManager.Tests.UtilityTests.ConvertDirection_LargeDelta_ClampsCorrectly
       resultStatus: 1
-      duration: 0.0002239
+      duration: 0.0002251
       messages: 
       output: 
       stacktrace: 
@@ -3369,7 +3365,7 @@ MonoBehaviour:
       name: ConvertDirection_LargeNegativeSteps_SW
       fullName: GameManager.Tests.UtilityTests.ConvertDirection_LargeNegativeSteps_SW
       resultStatus: 1
-      duration: 0.0002104
+      duration: 0.0001809
       messages: 
       output: 
       stacktrace: 
@@ -3386,7 +3382,7 @@ MonoBehaviour:
       name: ConvertDirection_MatchesConstantsMap
       fullName: GameManager.Tests.UtilityTests.ConvertDirection_MatchesConstantsMap
       resultStatus: 1
-      duration: 0.0007347
+      duration: 0.0007878
       messages: 
       output: 
       stacktrace: 
@@ -3403,7 +3399,7 @@ MonoBehaviour:
       name: ConvertDirection_SamePosition_ReturnsNone
       fullName: GameManager.Tests.UtilityTests.ConvertDirection_SamePosition_ReturnsNone
       resultStatus: 1
-      duration: 0.0001879
+      duration: 0.0002008
       messages: 
       output: 
       stacktrace: 
@@ -3420,7 +3416,7 @@ MonoBehaviour:
       name: GridToInt_Overload_EncodesCorrectly
       fullName: GameManager.Tests.UtilityTests.GridToInt_Overload_EncodesCorrectly
       resultStatus: 1
-      duration: 0.0001921
+      duration: 0.0001587
       messages: 
       output: 
       stacktrace: 
@@ -3437,7 +3433,7 @@ MonoBehaviour:
       name: IntToGrid_Overload_DecodesCorrectly
       fullName: GameManager.Tests.UtilityTests.IntToGrid_Overload_DecodesCorrectly
       resultStatus: 1
-      duration: 0.0002582
+      duration: 0.0003958
       messages: 
       output: 
       stacktrace: 
@@ -3454,7 +3450,7 @@ MonoBehaviour:
       name: IsValidGridLocation_BoundaryValues
       fullName: GameManager.Tests.UtilityTests.IsValidGridLocation_BoundaryValues
       resultStatus: 1
-      duration: 0.0002866
+      duration: 0.0002381
       messages: 
       output: 
       stacktrace: 
@@ -3471,7 +3467,7 @@ MonoBehaviour:
       name: SafeNormalize_Diagonal_ReturnsNormalized
       fullName: GameManager.Tests.UtilityTests.SafeNormalize_Diagonal_ReturnsNormalized
       resultStatus: 1
-      duration: 0.0001924
+      duration: 0.0004414
       messages: 
       output: 
       stacktrace: 
@@ -3488,7 +3484,7 @@ MonoBehaviour:
       name: SafeNormalize_PureX_ReturnsUnitX
       fullName: GameManager.Tests.UtilityTests.SafeNormalize_PureX_ReturnsUnitX
       resultStatus: 1
-      duration: 0.0001708
+      duration: 0.0002042
       messages: 
       output: 
       stacktrace: 
@@ -3505,7 +3501,7 @@ MonoBehaviour:
       name: SafeNormalize_PureY_ReturnsUnitY
       fullName: GameManager.Tests.UtilityTests.SafeNormalize_PureY_ReturnsUnitY
       resultStatus: 1
-      duration: 0.0001572
+      duration: 0.000146
       messages: 
       output: 
       stacktrace: 
@@ -3522,7 +3518,7 @@ MonoBehaviour:
       name: SafeNormalize_ZeroVector_ReturnsZero
       fullName: GameManager.Tests.UtilityTests.SafeNormalize_ZeroVector_ReturnsZero
       resultStatus: 1
-      duration: 0.0001925
+      duration: 0.0001546
       messages: 
       output: 
       stacktrace: 
@@ -3585,8 +3581,8 @@ MonoBehaviour:
     y: 643
     width: 1407
     height: 296
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 11}
