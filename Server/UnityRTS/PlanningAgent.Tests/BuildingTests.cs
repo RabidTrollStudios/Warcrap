@@ -1,6 +1,5 @@
 using AgentSDK;
 using AgentTestHarness;
-using System.Linq;
 using Xunit;
 
 namespace PlanningAgent.Tests
@@ -226,95 +225,6 @@ namespace PlanningAgent.Tests
             var barracks = game.GetUnitsByType(0, UnitType.BARRACKS);
             Assert.True(barracks.Count >= 1,
                 $"Expected at least 1 barracks built, got {barracks.Count}");
-        }
-    }
-
-    // ------------------------------------------------------------------
-    // Test helper agents
-    // ------------------------------------------------------------------
-
-    internal class BuildOnceAgent : IPlanningAgent
-    {
-        private readonly UnitType buildType;
-        private readonly Position buildPos;
-        private bool built;
-
-        public BuildOnceAgent(UnitType buildType, Position buildPos)
-        {
-            this.buildType = buildType;
-            this.buildPos = buildPos;
-        }
-
-        public void InitializeMatch() { built = false; }
-        public void InitializeRound(IGameState state) { }
-        public void Learn(IGameState state) { }
-
-        public void Update(IGameState state, IAgentActions actions)
-        {
-            if (built) return;
-            var workers = state.GetMyUnits(UnitType.WORKER);
-            if (workers.Count > 0)
-            {
-                var info = state.GetUnit(workers[0]);
-                if (info.HasValue && info.Value.CurrentAction == UnitAction.IDLE)
-                {
-                    actions.Build(workers[0], buildPos, buildType);
-                    built = true;
-                }
-            }
-        }
-    }
-
-    internal class BuildWithSoldierAgent : IPlanningAgent
-    {
-        private bool tried;
-        public void InitializeMatch() { tried = false; }
-        public void InitializeRound(IGameState state) { }
-        public void Learn(IGameState state) { }
-
-        public void Update(IGameState state, IAgentActions actions)
-        {
-            if (tried) return;
-            var soldiers = state.GetMyUnits(UnitType.SOLDIER);
-            if (soldiers.Count > 0)
-            {
-                actions.Build(soldiers[0], new Position(15, 15), UnitType.BARRACKS);
-                tried = true;
-            }
-        }
-    }
-
-    internal class BuildMultipleAgent : IPlanningAgent
-    {
-        private int buildIndex;
-        private readonly Position[] buildSites = new[]
-        {
-            new Position(15, 15),
-            new Position(20, 15),
-            new Position(15, 20),
-        };
-
-        public void InitializeMatch() { buildIndex = 0; }
-        public void InitializeRound(IGameState state) { }
-        public void Learn(IGameState state) { }
-
-        public void Update(IGameState state, IAgentActions actions)
-        {
-            if (buildIndex >= buildSites.Length) return;
-
-            var workers = state.GetMyUnits(UnitType.WORKER);
-            foreach (int wNbr in workers)
-            {
-                if (buildIndex >= buildSites.Length) break;
-                var info = state.GetUnit(wNbr);
-                if (info.HasValue && info.Value.CurrentAction == UnitAction.IDLE
-                    && state.MyGold >= GameConstants.COST[UnitType.BARRACKS]
-                    && state.IsAreaBuildable(UnitType.BARRACKS, buildSites[buildIndex]))
-                {
-                    actions.Build(wNbr, buildSites[buildIndex], UnitType.BARRACKS);
-                    buildIndex++;
-                }
-            }
         }
     }
 }

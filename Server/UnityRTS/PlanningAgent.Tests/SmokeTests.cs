@@ -105,7 +105,7 @@ namespace PlanningAgent.Tests
                 .Build();
 
             // Use a custom agent that trains a single worker
-            var trainer = new TrainOneWorkerAgent();
+            var trainer = new TrainOnceAgent(UnitType.WORKER);
             game.SetAgent(0, trainer);
             game.SetAgent(1, new DoNothingAgent());
 
@@ -158,37 +158,5 @@ namespace PlanningAgent.Tests
             // Path should end at the target
             Assert.Equal(new Position(5, 7), path[path.Count - 1]);
         }
-    }
-
-    /// <summary>
-    /// Simple test agent that trains exactly one worker, then idles.
-    /// </summary>
-    internal class TrainOneWorkerAgent : IPlanningAgent
-    {
-        private bool trained;
-
-        public void InitializeMatch() { trained = false; }
-        public void InitializeRound(IGameState state) { }
-
-        public void Update(IGameState state, IAgentActions actions)
-        {
-            if (trained) return;
-
-            var bases = state.GetMyUnits(UnitType.BASE);
-            if (bases.Count > 0)
-            {
-                var baseInfo = state.GetUnit(bases[0]);
-                if (baseInfo.HasValue
-                    && baseInfo.Value.IsBuilt
-                    && baseInfo.Value.CurrentAction == UnitAction.IDLE
-                    && state.MyGold >= GameConstants.COST[UnitType.WORKER])
-                {
-                    actions.Train(bases[0], UnitType.WORKER);
-                    trained = true;
-                }
-            }
-        }
-
-        public void Learn(IGameState state) { }
     }
 }
